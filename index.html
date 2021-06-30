@@ -15,32 +15,27 @@
     <div class="row g-2">
         <div class="col-12">
             <div class="form-floating">
-                <input type="text" class="form-control" id="query-search" placeholder="text" value="">
-                <label for="floatingInputGrid">Search for a recipe...</label>
+                <input type="text" class="form-control" id="query-include" placeholder="text" value="">
+                <label for="floatingInputGrid">Search for a recipe (Required)</label>
             </div>
         </div>
     </div>
     <div class="row g-2">
         <div class="col-12">
             <div class="form-floating">
-                <input type="text" class="form-control" id="query-search" placeholder="text" value="">
+                <input type="text" class="form-control" id="query-exclude" placeholder="text" value="">
                 <label for="floatingInputGrid">Exclude these foods</label>
             </div>
         </div>
     </div>
-    <div class="btn-group">
-        <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            Diet
-        </button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">No preference</a></li>
-            <li><a class="dropdown-item" href="#">Vegetarian</a></li>
-            <li><a class="dropdown-item" href="#">Vegan</a></li>
-            <li><a class="dropdown-item" href="#">Pescetarian</a></li>
-        </ul>
-    </div>
-    <div class="btn-group-vertical" role="group" aria-label="Intolerances">
+    <select class="form-select form-select-lg mb-3" id="diet" aria-label=".form-select-lg example">
+        <option value=" " selected>Diet</option>
+        <option value=" ">No preference</option>
+        <option value="vegetarian">Vegetarian</option>
+        <option value="vegan">Vegan</option>
+        <option value="pescetarian">Pescetarian</option>
+    </select>
+    <div class="btn-group-vertical" role="group" aria-label="Intolerances" id="intolerance">
         <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
         <label class="btn btn-outline-primary" for="btncheck1">Dairy</label>
 
@@ -75,7 +70,7 @@
         <label class="btn btn-outline-primary" for="btncheck11">Wheat</label>
     </div>
 
-    <div class="btn-group-vertical" role="group" aria-label="Cuisines">
+    <div class="btn-group-vertical" role="group" aria-label="Cuisines" id="cuisine">
         <input type="checkbox" class="btn-check" id="cuicheck1" autocomplete="off">
         <label class="btn btn-outline-primary" for="cuicheck1">African</label>
 
@@ -108,10 +103,10 @@
 
         <input type="checkbox" class="btn-check" id="cuicheck11" autocomplete="off">
         <label class="btn btn-outline-primary" for="cuicheck11">Italian</label>
-        
+
         <input type="checkbox" class="btn-check" id="cuicheck12" autocomplete="off">
         <label class="btn btn-outline-primary" for="cuicheck12">Mexican</label>
-        
+
         <input type="checkbox" class="btn-check" id="cuicheck13" autocomplete="off">
         <label class="btn btn-outline-primary" for="cuicheck13">Spanish</label>
 
@@ -139,8 +134,24 @@
         <input type="checkbox" class="btn-check" id="cuicheck21" autocomplete="off">
         <label class="btn btn-outline-primary" for="cuicheck21">Latin American</label>
     </div>
-    <button type="submit" id="query-search-button" class="btn btn-secondary btn-lg">Search</button>
-    <button type="submit" id="lucky-button" class="btn btn-secondary btn-lg">I'm feeling lucky</button>
+    <select class="form-select form-select-lg mb-3" id="dish-type" aria-label=".form-select-lg example">
+        <option value=" "selected>Dish Type</option>
+        <option value=" ">No preference</option>
+        <option value="breakfast">Breakfast</option>
+        <option value="appetizer">Appetizer</option>
+        <option value="soup">Soup</option>
+        <option value="main course">Main course</option>
+        <option value="side dish">Side dish</option>
+        <option value="dessert">Dessert</option>
+        <option value="salad">Salad</option>
+        <option value="bread">Bread</option>
+        <option value="sauce">Sauce</option>
+        <option value="drink">Drink</option>
+    </select>
+
+    <button type="submit" id="query-search-button" class="btn btn-secondary btn-lg"
+        onclick="executeSearch()">Search</button>
+    <button type="submit" id="lucky-button" class="btn btn-secondary btn-lg" onclick="">I'm feeling lucky</button>
     <div class="row">
         <div class="col-10 query-results">
         </div>
