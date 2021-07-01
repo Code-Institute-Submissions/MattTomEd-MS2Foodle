@@ -36,6 +36,10 @@ function executeSearch(cb) {
 	const settings = {
 		"async": true,
 		"crossDomain": true,
+		"error": function(xhr, status, error) {
+			var errorMessage = xhr.status + ': ' + xhr.statusText
+			alert('Error - ' + errorMessage);
+		},
 		"url": `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${compileUrl(cb)}`,
 		"method": "GET",
 		"headers": {
@@ -44,8 +48,11 @@ function executeSearch(cb) {
 		}
 	};
 
+	// If request is successful
 	$.ajax(settings).done(function (response) {
 		console.log(response);
 	});
+
+	
 
 }
