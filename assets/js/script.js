@@ -3,11 +3,13 @@ function readyDocument() {
 }
 $(document).ready(readyDocument);
 
+// Remove grammar from
 function replaceCommasSpaces(string) {
 	replaced = string.replace(/,/g, '%2C').replace(/ /g, '%20');
 	return replaced
 }
 
+// Iterate over selected checkboxes
 function processCheckbox(check) {
 
 	var checkboxArr = [];
@@ -21,6 +23,7 @@ function processCheckbox(check) {
 	return checkboxString
 }
 
+// Use search info to compile URL for API
 function compileUrl() {
 	cuisine = processCheckbox($("#cuisine"))
 	intolerances = processCheckbox($("#intolerance"))
@@ -28,14 +31,16 @@ function compileUrl() {
 	query = replaceCommasSpaces($("#query-include").val());
 	excludeIngredients = replaceCommasSpaces($("#query-exclude").val());
 	type = replaceCommasSpaces($("#dish-type").val());
-	url = `search?query=${query}&diet=${diet}&excludeIngredients=${excludeIngredients}&intolerances=${intolerances}&number=10&offset=0&type=${type}&cuisine=${cuisine}`
+	url = `search?query=${query}&diet=${diet}&excludeIngredients=${excludeIngredients}&intolerances=${intolerances}&number=200&offset=0&type=${type}&cuisine=${cuisine}`
 	return url
 }
 
+// Search and retrieve data
 function executeSearch(cb) {
 	const settings = {
 		"async": true,
 		"crossDomain": true,
+		// Error message
 		"error": function (xhr, status, error) {
 			var errorMessage = xhr.status + ': ' + xhr.statusText
 			alert('Error - ' + errorMessage);
@@ -51,11 +56,11 @@ function executeSearch(cb) {
 	// If request is successful
 	$.ajax(settings).done(function (response) {
 		recipeArray = response.results;
-		console.log(response);
-		console.log(recipeArray);
+		console.log(response.results);
 		$("#query-placeholder").replaceWith("<table id='results-table'></table>");
 		$("#results-table tr").remove();
 
+		// Print the data
 		$.each(recipeArray, function (index, recipe) {
 			$("#results-table").append(
 				$('<tr>').append(
@@ -65,9 +70,6 @@ function executeSearch(cb) {
 			));
 		});
 
-
 	});
-
-
 
 }
