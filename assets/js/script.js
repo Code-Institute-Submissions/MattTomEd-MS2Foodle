@@ -36,7 +36,7 @@ function executeSearch(cb) {
 	const settings = {
 		"async": true,
 		"crossDomain": true,
-		"error": function(xhr, status, error) {
+		"error": function (xhr, status, error) {
 			var errorMessage = xhr.status + ': ' + xhr.statusText
 			alert('Error - ' + errorMessage);
 		},
@@ -50,9 +50,24 @@ function executeSearch(cb) {
 
 	// If request is successful
 	$.ajax(settings).done(function (response) {
+		recipeArray = response.results;
 		console.log(response);
+		console.log(recipeArray);
+		$("#query-placeholder").replaceWith("<table id='results-table'></table>");
+		$("#results-table tr").remove();
+
+		$.each(recipeArray, function (index, recipe) {
+			$("#results-table").append(
+				$('<tr>').append(
+					$('<td>').text(this.title),
+					$('<td>').text(this.readyInMinutes),
+					$('<td>').text(this.servings)
+			));
+		});
+
+
 	});
 
-	
+
 
 }
