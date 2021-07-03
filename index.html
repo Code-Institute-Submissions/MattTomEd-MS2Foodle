@@ -105,37 +105,32 @@
         <label class="btn btn-outline-primary" for="cuicheck11">Italian</label>
 
         <input type="checkbox" class="btn-check" id="cuicheck12" autocomplete="off">
-        <label class="btn btn-outline-primary" for="cuicheck12">Mexican</label>
+        <label class="btn btn-outline-primary" for="cuicheck12">Spanish</label>
 
         <input type="checkbox" class="btn-check" id="cuicheck13" autocomplete="off">
-        <label class="btn btn-outline-primary" for="cuicheck13">Spanish</label>
+        <label class="btn btn-outline-primary" for="cuicheck13">Middle Eastern</label>
 
         <input type="checkbox" class="btn-check" id="cuicheck14" autocomplete="off">
-        <label class="btn btn-outline-primary" for="cuicheck14">Middle Eastern</label>
+        <label class="btn btn-outline-primary" for="cuicheck14">Jewish</label>
 
         <input type="checkbox" class="btn-check" id="cuicheck15" autocomplete="off">
-        <label class="btn btn-outline-primary" for="cuicheck15">Jewish</label>
+        <label class="btn btn-outline-primary" for="cuicheck15">American</label>
 
         <input type="checkbox" class="btn-check" id="cuicheck16" autocomplete="off">
-        <label class="btn btn-outline-primary" for="cuicheck16">American</label>
+        <label class="btn btn-outline-primary" for="cuicheck16">German</label>
 
         <input type="checkbox" class="btn-check" id="cuicheck17" autocomplete="off">
-        <label class="btn btn-outline-primary" for="cuicheck17">German</label>
+        <label class="btn btn-outline-primary" for="cuicheck17">Greek</label>
 
         <input type="checkbox" class="btn-check" id="cuicheck18" autocomplete="off">
-        <label class="btn btn-outline-primary" for="cuicheck18">Greek</label>
+        <label class="btn btn-outline-primary" for="cuicheck18">Eastern European</label>
 
         <input type="checkbox" class="btn-check" id="cuicheck19" autocomplete="off">
-        <label class="btn btn-outline-primary" for="cuicheck19">Eastern European</label>
-
-        <input type="checkbox" class="btn-check" id="cuicheck20" autocomplete="off">
-        <label class="btn btn-outline-primary" for="cuicheck20">Caribbean</label>
-
-        <input type="checkbox" class="btn-check" id="cuicheck21" autocomplete="off">
-        <label class="btn btn-outline-primary" for="cuicheck21">Latin American</label>
+        <label class="btn btn-outline-primary" for="cuicheck19">Caribbean</label>
+        
     </div>
     <select class="form-select form-select-lg mb-3" id="dish-type" aria-label=".form-select-lg example">
-        <option value=" "selected>Dish Type</option>
+        <option value=" " selected>Dish Type</option>
         <option value=" ">No preference</option>
         <option value="breakfast">Breakfast</option>
         <option value="appetizer">Appetizer</option>
@@ -153,7 +148,10 @@
         onclick="executeSearch()">Search</button>
     <button type="submit" id="lucky-button" class="btn btn-secondary btn-lg" onclick="">I'm feeling lucky</button>
     <div class="row">
-        <div class="col-10 query-results">
+        <div class="col-10" id="results-area">
+            <div id="query-placeholder">
+                <p>RESULTS GO HERE</p>
+            </div>
         </div>
     </div>
 </body>
@@ -162,6 +160,7 @@
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 <script src="assets/js/script.js">
 </script>
 

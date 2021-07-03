@@ -53,23 +53,111 @@ function executeSearch(cb) {
 		}
 	};
 
-	// If request is successful
+	// If request is successful, conduct a search
 	$.ajax(settings).done(function (response) {
-		recipeArray = response.results;
-		console.log(response.results);
-		$("#query-placeholder").replaceWith("<table id='results-table'></table>");
-		$("#results-table tr").remove();
 
-		// Print the data
-		$.each(recipeArray, function (index, recipe) {
-			$("#results-table").append(
-				$('<tr>').append(
-					$('<td>').text(this.title),
-					$('<td>').text(this.readyInMinutes),
-					$('<td>').text(this.servings)
-			));
-		});
+		// log response before splitting array
+		console.log(response)
+
+		// Break data into array chunks of 10 for pagination
+		recipeArray = _.chunk(response.results, 10)
+		console.log(recipeArray);
+
+		// pages info
+		pageNumber = 1;
+		maxPages = recipeArray.length;
+
+		console.log("current page: " + pageNumber)
+		console.log("max pages: " + maxPages)
+
+		displayData(pageNumber);
+
+		// Create pagination if needed
+		if (maxPages > 1) {
+			$("#results-area").append(`<button type="submit" id="search-next" class="btn btn-secondary btn-lg"
+			onclick="nextPage(pageNumber)">Next</button>`)
+			console.log("SHOW NEXT");
+			$("#results-area").append(`<button type="submit" id="search-prev" class="btn btn-secondary btn-lg"
+			onclick="prevPage(pageNumber)">Previous</button>`);
+			$("#search-prev").hide();
+			console.log("HIDE PREV");
+		} else {
+			console.log("NO PAGINATION")
+		}
 
 	});
 
+}
+
+function displayData(page) {
+	// Get first batch of results
+	displayArray = _.nth(recipeArray, page - 1);
+	console.log(displayArray);
+	// remove existing search data
+	removeSearchData();
+	// Print the data
+	printData(displayArray);
+}
+
+function printData(array) {
+	$.each(array, function (index, recipe) {
+		$("#results-table").append(
+			$('<tr>').append(
+				$('<td>').text(this.title),
+				$('<td>').text(this.readyInMinutes),
+				$('<td>').text(this.servings)
+			));
+	});
+}
+
+function removeSearchData() {
+	// remove existing search data
+	$("#query-placeholder").replaceWith("<table id='results-table'></table>");
+	$("#results-table tr").remove();
+}
+
+function nextPage(page) {
+
+	pageNumber = incrementPage(page);
+	displayData(pageNumber);
+	console.log("Page number is " + pageNumber)
+	switch (true) {
+		case pageNumber === maxPages:
+			$("#search-next").hide();
+			console.log("HIDE NEXT");
+			break;
+		case pageNumber < maxPages:
+			$("#search-next").show();
+			$("#search-prev").show();
+			console.log("SHOW NEXT AND PREV");
+			break;
+	}
+}
+
+function prevPage(page) {
+
+	pageNumber = decrementPage(page);
+	displayData(pageNumber);
+	console.log("Page number is " + pageNumber)
+	switch (true) {
+		case pageNumber > 1:
+			$("#search-next").show();
+			$("#search-prev").show();
+			console.log("SHOW NEXT AND PREV");
+			break;
+		case pageNumber < 2:
+			$("#search-prev").hide();
+			console.log("HIDE PREV");
+			break;
+	}
+}
+
+function incrementPage(pageNumber) {
+	++pageNumber;
+	return pageNumber;
+}
+
+function decrementPage(pageNumber) {
+	--pageNumber;
+	return pageNumber;
 }
