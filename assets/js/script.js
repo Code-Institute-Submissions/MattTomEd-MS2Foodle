@@ -39,28 +39,28 @@ function compileUrl() {
 
 function displayFoodSummary(id) {
 
-// BLOCK TO AVOID API CHARGE FOR NOW
+	// BLOCK TO AVOID API CHARGE FOR NOW
 
-//	const settings = {
-//		"async": true,
-//		"crossDomain": true,
-//		// Error message
-//		"error": function (xhr, status, error) {
-//			var errorMessage = xhr.status + ': ' + xhr.statusText
-//			alert('Error - ' + errorMessage);
-//		},
-//		"url": `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`,
-//		"method": "GET",
-//		"headers": {
-//			"x-rapidapi-key": "f51cb857c1mshe4a2ebcb218aee9p158115jsn9122b44a255a",
-//			"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-//		}
-//	};
-//
+	//	const settings = {
+	//		"async": true,
+	//		"crossDomain": true,
+	//		// Error message
+	//		"error": function (xhr, status, error) {
+	//			var errorMessage = xhr.status + ': ' + xhr.statusText
+	//			alert('Error - ' + errorMessage);
+	//		},
+	//		"url": `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`,
+	//		"method": "GET",
+	//		"headers": {
+	//			"x-rapidapi-key": "f51cb857c1mshe4a2ebcb218aee9p158115jsn9122b44a255a",
+	//			"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+	//		}
+	//	};
+	//
 	// If request is successful, display summary
-//	$.ajax(settings).done(function (response) {
-//		console.log(response);
-//	});
+	//	$.ajax(settings).done(function (response) {
+	//		console.log(response);
+	//	});
 	console.log("Button has been clicked for ID number " + id);
 }
 
@@ -138,11 +138,25 @@ function printData(array) {
 		foodIdString = this.id;
 		foodIdString = foodIdString.toString();
 		foodId = "displayFoodSummary(" + this.id + ")";
-		console.log("ID is "+ foodIdString)
+		console.log("ID is " + foodIdString)
+		prepTime = this.readyInMinutes;
+		function convertTime (prepTime) {
+			hours = Math.floor(prepTime / 60);  
+			minutes = prepTime % 60;
+			if (hours === 0) {
+				return minutes + " minutes";
+			} else if (minutes === 0 && hours === 1) {
+				return hours + " hour"
+			} else if (minutes === 0 && hours > 1) {
+			return hours + " hours";   
+			} else if (hours > 1 && minutes >= 1) {
+				return hours + " hours " + minutes + " minutes"
+			}
+		}
 		$("#results-table").append(
 			$('<tr class="table-primary table-hover">').append(
 				$('<td class="table-primary table-hover">').text(this.title),
-				$('<td class="table-primary table-hover">').text(this.readyInMinutes),
+				$('<td class="table-primary table-hover">').text(convertTime(prepTime)),
 				$('<td class="table-primary table-hover">').text(this.servings),
 				$('<td class="table-primary table-hover">').append(`<button type="submit" id="display-summary" class="btn btn-secondary"
 				onclick="${foodId}">See recipe</button>`)
@@ -154,6 +168,9 @@ function removeSearchData() {
 	// remove existing search data
 	$("#query-placeholder").replaceWith("<table class='table-primary table-hover' id='results-table'></table>");
 	$("#results-table tr").remove();
+	$("#results-table").append(
+		$('<tr><th>Recipe</th><th>Preparation time</th><th>Servings</th></tr>')
+	)
 }
 
 function nextPage(page) {
