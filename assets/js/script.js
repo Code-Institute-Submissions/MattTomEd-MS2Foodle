@@ -35,6 +35,35 @@ function compileUrl() {
 	return url
 }
 
+// display food summary by ID, selected by button on list
+
+function displayFoodSummary(id) {
+
+// BLOCK TO AVOID API CHARGE FOR NOW
+
+//	const settings = {
+//		"async": true,
+//		"crossDomain": true,
+//		// Error message
+//		"error": function (xhr, status, error) {
+//			var errorMessage = xhr.status + ': ' + xhr.statusText
+//			alert('Error - ' + errorMessage);
+//		},
+//		"url": `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`,
+//		"method": "GET",
+//		"headers": {
+//			"x-rapidapi-key": "f51cb857c1mshe4a2ebcb218aee9p158115jsn9122b44a255a",
+//			"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+//		}
+//	};
+//
+	// If request is successful, display summary
+//	$.ajax(settings).done(function (response) {
+//		console.log(response);
+//	});
+	console.log("Button has been clicked for ID number " + id);
+}
+
 // Search and retrieve data
 function executeSearch(cb) {
 	const settings = {
@@ -70,6 +99,11 @@ function executeSearch(cb) {
 		console.log("current page: " + pageNumber)
 		console.log("max pages: " + maxPages)
 
+		// remove previous pagination
+		$("#search-next").remove();
+		$("#search-prev").remove();
+
+		// display data
 		displayData(pageNumber);
 
 		// Create pagination if needed
@@ -101,18 +135,24 @@ function displayData(page) {
 
 function printData(array) {
 	$.each(array, function (index, recipe) {
+		foodIdString = this.id;
+		foodIdString = foodIdString.toString();
+		foodId = "displayFoodSummary(" + this.id + ")";
+		console.log("ID is "+ foodIdString)
 		$("#results-table").append(
-			$('<tr>').append(
-				$('<td>').text(this.title),
-				$('<td>').text(this.readyInMinutes),
-				$('<td>').text(this.servings)
+			$('<tr class="table-primary table-hover">').append(
+				$('<td class="table-primary table-hover">').text(this.title),
+				$('<td class="table-primary table-hover">').text(this.readyInMinutes),
+				$('<td class="table-primary table-hover">').text(this.servings),
+				$('<td class="table-primary table-hover">').append(`<button type="submit" id="display-summary" class="btn btn-secondary"
+				onclick="${foodId}">See recipe</button>`)
 			));
 	});
 }
 
 function removeSearchData() {
 	// remove existing search data
-	$("#query-placeholder").replaceWith("<table id='results-table'></table>");
+	$("#query-placeholder").replaceWith("<table class='table-primary table-hover' id='results-table'></table>");
 	$("#results-table tr").remove();
 }
 
