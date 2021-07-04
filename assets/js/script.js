@@ -99,7 +99,7 @@ function executeSearch(cb) {
 		console.log("current page: " + pageNumber)
 		console.log("max pages: " + maxPages)
 
-		// remove previous pagination
+		// remove previous pagination if user searches again w/o without clearing
 		$("#search-next").remove();
 		$("#search-prev").remove();
 
@@ -115,8 +115,12 @@ function executeSearch(cb) {
 			onclick="prevPage(pageNumber)">Previous</button>`);
 			$("#search-prev").hide();
 			console.log("HIDE PREV");
+			$("#results-area").append(`<button type="submit" id="reset-search" class="btn btn-secondary btn-lg"
+			onclick="resetSearch()">Reset search</button>`)
 		} else {
 			console.log("NO PAGINATION")
+			$("#results-area").append(`<button type="submit" id="reset-search" class="btn btn-secondary btn-lg"
+			onclick="resetSearch()">Reset search</button>`)
 		}
 
 	});
@@ -134,6 +138,9 @@ function displayData(page) {
 }
 
 function printData(array) {
+	$("#results-table").append(
+		$('<tr><th>Recipe</th><th>Preparation time</th><th>Servings</th></tr>')
+	)
 	$.each(array, function (index, recipe) {
 		foodIdString = this.id;
 		foodIdString = foodIdString.toString();
@@ -164,13 +171,19 @@ function printData(array) {
 	});
 }
 
+
+// remove existing search data
 function removeSearchData() {
-	// remove existing search data
 	$("#query-placeholder").replaceWith("<table class='table-primary table-hover' id='results-table'></table>");
 	$("#results-table tr").remove();
-	$("#results-table").append(
-		$('<tr><th>Recipe</th><th>Preparation time</th><th>Servings</th></tr>')
-	)
+}
+
+// reset search to starting state
+function resetSearch() {
+	removeSearchData();
+	$("#search-next").remove();
+	$("#search-prev").remove();
+	$("#reset-search").remove();
 }
 
 function nextPage(page) {
