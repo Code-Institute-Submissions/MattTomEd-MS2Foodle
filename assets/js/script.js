@@ -39,28 +39,26 @@ function compileUrl() {
 
 function displayFoodSummary(id) {
 
-	// BLOCK TO AVOID API CHARGE FOR NOW
-
-	//	const settings = {
-	//		"async": true,
-	//		"crossDomain": true,
-	//		// Error message
-	//		"error": function (xhr, status, error) {
-	//			var errorMessage = xhr.status + ': ' + xhr.statusText
-	//			alert('Error - ' + errorMessage);
-	//		},
-	//		"url": `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`,
-	//		"method": "GET",
-	//		"headers": {
-	//			"x-rapidapi-key": "f51cb857c1mshe4a2ebcb218aee9p158115jsn9122b44a255a",
-	//			"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-	//		}
-	//	};
-	//
+		const settings = {
+			"async": true,
+			"crossDomain": true,
+			// Error message
+			"error": function (xhr, status, error) {
+			var errorMessage = xhr.status + ': ' + xhr.statusText
+				alert('Error - ' + errorMessage);
+			},
+			"url": `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`,
+			"method": "GET",
+			"headers": {
+				"x-rapidapi-key": "f51cb857c1mshe4a2ebcb218aee9p158115jsn9122b44a255a",
+				"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+			}
+		};
+	
 	// If request is successful, display summary
-	//	$.ajax(settings).done(function (response) {
-	//		console.log(response);
-	//	});
+		$.ajax(settings).done(function (response) {
+			console.log(response);
+		});
 	console.log("Button has been clicked for ID number " + id);
 }
 
