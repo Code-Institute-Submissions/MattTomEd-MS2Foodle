@@ -39,27 +39,28 @@ function compileUrl() {
 
 function displayFoodSummary(id) {
 
-		const settings = {
-			"async": true,
-			"crossDomain": true,
-			// Error message
-			"error": function (xhr, status, error) {
+	const settings = {
+		"async": true,
+		"crossDomain": true,
+		// Error message
+		"error": function (xhr, status, error) {
 			var errorMessage = xhr.status + ': ' + xhr.statusText
-				alert('Error - ' + errorMessage);
-			},
-			"url": `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`,
-			"method": "GET",
-			"headers": {
-				"x-rapidapi-key": "f51cb857c1mshe4a2ebcb218aee9p158115jsn9122b44a255a",
-				"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-			}
-		};
-	
+			alert('Error - ' + errorMessage);
+		},
+		"url": `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`,
+		"method": "GET",
+		"headers": {
+			"x-rapidapi-key": "f51cb857c1mshe4a2ebcb218aee9p158115jsn9122b44a255a",
+			"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+		}
+	};
+
 	// If request is successful, display summary
-		$.ajax(settings).done(function (response) {
-			console.log(response);
-		});
-	console.log("Button has been clicked for ID number " + id);
+	$.ajax(settings).done(function (response) {
+		console.log(response);
+		console.log("Button has been clicked for ID number " + id);
+		generateSummary(response);
+	});
 }
 
 // Search and retrieve data
@@ -125,6 +126,41 @@ function executeSearch(cb) {
 
 }
 
+// generate recipe summary
+function generateSummary(response) {
+
+	// remove existing data if user manually enters URL (if bookmarked)
+	$("#recipe-summary").replaceWith(`<div id="results-table"></div>`);
+
+	// generate info in a div
+	$("#results-table").replaceWith(`<div id="recipe-summary"></div>`);
+	if (response.vegetarian === true) {
+		console.log("VEG " + response.vegetarian)
+		$("#recipe-summary").append(`<div id="icon-vegetarian">V</div>`);
+	}
+	if (response.vegan === true) {
+		console.log("VEGAN " + response.vegan)
+		$("#recipe-summary").append(`<div id="icon-vegan">VG</div>`);
+	}
+	if (response.glutenFree === true) {
+		console.log("GF " + response.glutenFree)
+		$("#recipe-summary").append(`<div id="icon-gluten-free">GF</div>`);
+	}
+	if (response.dairyFree === true) {
+		console.log("DF " + response.vegetarian)
+		$("#recipe-summary").append(`<div id="icon-dairy-free">DF</div>`);
+	}
+	$("#recipe-summary").append(`<div id="icon-vegetarian">Source name: ${response.sourceName}</div>`);
+	$("#recipe-summary").append(`<div id="icon-vegetarian">Title: ${response.title}</div>`);
+	$("#recipe-summary").append(`<div id="icon-vegetarian">Minutes: ${convertTime(response.readyInMinutes)}</div>`);
+	$("#recipe-summary").append(`<div id="icon-vegetarian">Servings: ${response.servings}</div>`);
+	$("#recipe-summary").append(`<div id="icon-vegetarian">URL: ${response.sourceUrl}</div>`);
+	$("#recipe-summary").append(`<div id="icon-vegetarian">Image: <img src="${response.image}"/></div>`);
+	$("#recipe-summary").append(`<div id="icon-vegetarian">Dish types: ${response.dishTypes}</div>`);
+	$("#recipe-summary").append(`<div id="icon-vegetarian">Steps: ${response.analyzedInstructions.steps}</div>`);
+
+}
+
 function displayData(page) {
 	// Get first batch of results
 	displayArray = _.nth(recipeArray, page - 1);
@@ -145,19 +181,7 @@ function printData(array) {
 		foodId = "displayFoodSummary(" + this.id + ")";
 		console.log("ID is " + foodIdString)
 		prepTime = this.readyInMinutes;
-		function convertTime (prepTime) {
-			hours = Math.floor(prepTime / 60);  
-			minutes = prepTime % 60;
-			if (hours === 0) {
-				return minutes + " minutes";
-			} else if (minutes === 0 && hours === 1) {
-				return hours + " hour"
-			} else if (minutes === 0 && hours > 1) {
-			return hours + " hours";   
-			} else if (hours > 1 && minutes >= 1) {
-				return hours + " hours " + minutes + " minutes"
-			}
-		}
+		convertTime(prepTime);
 		$("#results-table").append(
 			$('<tr class="table-primary table-hover">').append(
 				$('<td class="table-primary table-hover">').text(this.title),
@@ -169,6 +193,19 @@ function printData(array) {
 	});
 }
 
+function convertTime(time) {
+	hours = Math.floor(time / 60);
+	minutes = time % 60;
+	if (hours === 0) {
+		return minutes + " minutes";
+	} else if (minutes === 0 && hours === 1) {
+		return hours + " hour"
+	} else if (minutes === 0 && hours > 1) {
+		return hours + " hours";
+	} else if (hours > 1 && minutes >= 1) {
+		return hours + " hours " + minutes + " minutes"
+	}
+}
 
 // remove existing search data
 function removeSearchData() {
