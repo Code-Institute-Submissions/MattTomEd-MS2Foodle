@@ -129,8 +129,9 @@ function executeSearch(cb) {
 // generate recipe summary
 function generateSummary(response) {
 
-	// remove existing data if user manually enters URL (if bookmarked)
+	// remove existing data and placeholder if user manually enters URL (if bookmarked)
 	$("#recipe-summary").replaceWith(`<div id="results-table"></div>`);
+	$("#query-placeholder").replaceWith(`<div id="results-table"></div>`);
 
 	// generate info in a div
 	$("#results-table").replaceWith(`<div id="recipe-summary"></div>`);
@@ -150,14 +151,22 @@ function generateSummary(response) {
 		console.log("DF " + response.vegetarian)
 		$("#recipe-summary").append(`<div id="icon-dairy-free">DF</div>`);
 	}
-	$("#recipe-summary").append(`<div id="icon-vegetarian">Source name: ${response.sourceName}</div>`);
-	$("#recipe-summary").append(`<div id="icon-vegetarian">Title: ${response.title}</div>`);
-	$("#recipe-summary").append(`<div id="icon-vegetarian">Minutes: ${convertTime(response.readyInMinutes)}</div>`);
-	$("#recipe-summary").append(`<div id="icon-vegetarian">Servings: ${response.servings}</div>`);
-	$("#recipe-summary").append(`<div id="icon-vegetarian">URL: ${response.sourceUrl}</div>`);
-	$("#recipe-summary").append(`<div id="icon-vegetarian">Image: <img src="${response.image}"/></div>`);
-	$("#recipe-summary").append(`<div id="icon-vegetarian">Dish types: ${response.dishTypes}</div>`);
-	$("#recipe-summary").append(`<div id="icon-vegetarian">Steps: ${response.analyzedInstructions.steps}</div>`);
+	stepsArray = response.analyzedInstructions[0].steps;
+	console.log(stepsArray[0].step)
+	console.log(typeof(stepsArray.length))
+	$("#recipe-summary").append(`<ul id="list-steps"></ul>`); 
+
+	$.each(stepsArray, function (index, recipe) {
+		$("#recipe-summary").append($('<li>').text(`${this.number}: ${this.step}`));
+	})
+
+	$("#recipe-summary").append(`<div id="source-name">Source name: ${response.sourceName}</div>`);
+	$("#recipe-summary").append(`<div id="recipe-title">Title: ${response.title}</div>`);
+	$("#recipe-summary").append(`<div id="prep-time">Minutes: ${convertTime(response.readyInMinutes)}</div>`);
+	$("#recipe-summary").append(`<div id="servings">Servings: ${response.servings}</div>`);
+	$("#recipe-summary").append(`<div id="source-url">URL: ${response.sourceUrl}</div>`);
+	$("#recipe-summary").append(`<div id="recipe-image">Image: <img src="${response.image}"/></div>`);
+	$("#recipe-summary").append(`<div id="dish-types">Dish types: ${response.dishTypes}</div>`);
 
 }
 
