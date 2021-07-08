@@ -134,7 +134,8 @@ function generateSummary(response) {
 	// remove existing data and placeholder if user manually enters URL (if bookmarked)
 	$("#recipe-summary").replaceWith(`<div id="results-table"></div>`);
 	$("#query-placeholder").replaceWith(`<div id="results-table"></div>`);
-
+	//store result as string in localstorage
+	localStorage.setItem(JSON.stringify(response.title), JSON.stringify(response))
 	// generate info in a div
 	$("#results-table").replaceWith(`<div id="recipe-summary"></div>`);
 	if (response.vegetarian === true) {
