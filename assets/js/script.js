@@ -3,7 +3,7 @@ $(document).ready(readyDocument);
 function readyDocument() {
 	console.log("Ready");
 	resultArray = [];
-	for (var i = 0; i < 4; i++) {
+	for (var i = 0; i < 5; i++) {
 		checkPreviousSearchList(localStorage.key(i))
 	}
 }
@@ -139,6 +139,8 @@ function executeSearch(cb) {
 			onclick="resetSearch()">Reset search</button>`)
 		}
 
+		// save search list to localstorage 
+		localStorage.setItem("recipeArray", JSON.stringify(recipeArray))
 	});
 
 	return false;
@@ -148,6 +150,8 @@ function executeSearch(cb) {
 // generate recipe summary
 function generateSummary(response) {
 
+	// store page number to session storage
+	sessionStorage.setItem("pageNumber", JSON.stringify(pageNumber));
 	// remove existing data and placeholder if user manually enters URL (if bookmarked)
 	$("#recipe-summary").replaceWith(`<div id="results-table"></div>`);
 	$("#query-placeholder").replaceWith(`<div id="results-table"></div>`);
@@ -169,18 +173,19 @@ function generateSummary(response) {
 		console.log("DF " + response.vegetarian)
 		$("#recipe-summary").append(`<div id="icon-dairy-free">DF</div>`);
 	}
-	stepsArray = response.analyzedInstructions[0].steps;
-	ingredientsArray = response.extendedIngredients
-	console.log(stepsArray[0].step)
-	console.log(typeof (stepsArray.length))
-	$("#recipe-summary").append(`<ul id="list-steps"></ul>`);
+	if (response.analyzedInstructions > 0) {
+		stepsArray = response.analyzedInstructions[0].steps;
+		console.log(stepsArray[0].step)
+		console.log(typeof (stepsArray.length))
+		$("#recipe-summary").append(`<ul id="list-steps"></ul>`);
 
-	$.each(stepsArray, function () {
-		$("#list-steps").append($('<li>').text(`${this.number}: ${this.step}`));
-	})
-
+		$.each(stepsArray, function () {
+			$("#list-steps").append($('<li>').text(`${this.number}: ${this.step}`));
+		})
+	}
+	
 	$("#recipe-summary").append(`<ul id="list-recipe"></ul>`);
-
+	ingredientsArray = response.extendedIngredients
 	$.each(ingredientsArray, function () {
 		$("#list-recipe").append($('<li>').text(`${this.original}`));
 	})
@@ -193,17 +198,26 @@ function generateSummary(response) {
 	$("#recipe-summary").append(`<div id="recipe-image">Image: <img src="${response.image}"/></div>`);
 	$("#recipe-summary").append(`<div id="dish-types">Dish types: ${response.dishTypes}</div>`);
 	$("#recipe-summary").append(`<a href="${response.sourceUrl}" target="_blank"><button id="recipe-button" class="btn btn-secondary btn-lg">View source website</button></a>`)
-		//store result as string in localstorage
-		localStorage.setItem(JSON.stringify(response.title), JSON.stringify(response))
-		checkPreviousSearchList(JSON.stringify(response.title));
+
+	//store result as string in localstorage
+	localStorage.setItem(JSON.stringify(response.title), JSON.stringify(response))
+	checkPreviousSearchList(JSON.stringify(response.title));
+
+	// create back button for search, return last known page number
+	recipeArray = localStorage.getItem("recipeArray")
+	recipeArray = JSON.parse(recipeArray);
+	pageNumber = sessionStorage.getItem("pageNumber")
+	pageNumber = parseInt(pageNumber)
+
+	$("#recipe-summary").append(`<button id="back-to-search" onclick="displayData(pageNumber)" class="btn btn-secondary btn-lg">Go back</button></a>`)
 }
 
 function displayData(page) {
+	// remove existing search and summary data
+	removeSearchData();
 	// Get first batch of results
 	displayArray = _.nth(recipeArray, page - 1);
 	console.log(displayArray);
-	// remove existing search data
-	removeSearchData();
 	// Print the data
 	printData(displayArray);
 }
@@ -247,6 +261,7 @@ function convertTime(time) {
 // remove existing search data
 function removeSearchData() {
 	$("#query-placeholder").replaceWith("<table class='table-primary table-hover' id='results-table'></table>");
+	$("#recipe-summary").replaceWith("<table class='table-primary table-hover' id='results-table'></table>")
 	$("#results-table tr").remove();
 }
 
