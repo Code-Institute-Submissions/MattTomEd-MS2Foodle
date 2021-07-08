@@ -124,6 +124,8 @@ function executeSearch(cb) {
 
 	});
 
+	return false;
+
 }
 
 // generate recipe summary
@@ -152,12 +154,19 @@ function generateSummary(response) {
 		$("#recipe-summary").append(`<div id="icon-dairy-free">DF</div>`);
 	}
 	stepsArray = response.analyzedInstructions[0].steps;
+	ingredientsArray = response.extendedIngredients
 	console.log(stepsArray[0].step)
 	console.log(typeof(stepsArray.length))
 	$("#recipe-summary").append(`<ul id="list-steps"></ul>`); 
 
-	$.each(stepsArray, function (index, recipe) {
-		$("#recipe-summary").append($('<li>').text(`${this.number}: ${this.step}`));
+	$.each(stepsArray, function () {
+		$("#list-steps").append($('<li>').text(`${this.number}: ${this.step}`));
+	})
+
+	$("#recipe-summary").append(`<ul id="list-recipe"></ul>`);
+
+	$.each(ingredientsArray, function () {
+		$("#list-recipe").append($('<li>').text(`${this.original}`));
 	})
 
 	$("#recipe-summary").append(`<div id="source-name">Source name: ${response.sourceName}</div>`);
@@ -167,7 +176,7 @@ function generateSummary(response) {
 	$("#recipe-summary").append(`<div id="source-url">URL: ${response.sourceUrl}</div>`);
 	$("#recipe-summary").append(`<div id="recipe-image">Image: <img src="${response.image}"/></div>`);
 	$("#recipe-summary").append(`<div id="dish-types">Dish types: ${response.dishTypes}</div>`);
-
+	$("#recipe-summary").append(`<a href="${response.sourceUrl}" target="_blank"><button id="recipe-button" class="btn btn-secondary btn-lg">Search</button></a>`)
 }
 
 function displayData(page) {

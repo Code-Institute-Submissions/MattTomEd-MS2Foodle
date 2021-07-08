@@ -16,4 +16,5 @@ function sendMail(contactForm) {
             return false
         }
     );
+    return false
 }
