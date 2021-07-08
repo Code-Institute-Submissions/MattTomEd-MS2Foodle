@@ -1,7 +1,24 @@
+$(document).ready(readyDocument);
+
 function readyDocument() {
 	console.log("Ready");
+	resultArray = [];
+	for (var i = 0; i < 4; i++) {
+		checkPreviousSearchList(localStorage.key(i))
+	}
 }
-$(document).ready(readyDocument);
+
+function checkPreviousSearchList(key) {
+	result = localStorage.getItem(key)
+	result = JSON.parse(result);
+	resultArray.push(result)
+	$("#previous-search-area").append(
+		`<li>Previous search result: <a href="">${result.title}</a></li>`
+	)
+	if ($('#previous-search-area li').length > 5) {
+		$('#previous-search-area li').first().remove();
+	}
+}
 
 // Remove grammar from
 function replaceCommasSpaces(string) {
@@ -134,8 +151,6 @@ function generateSummary(response) {
 	// remove existing data and placeholder if user manually enters URL (if bookmarked)
 	$("#recipe-summary").replaceWith(`<div id="results-table"></div>`);
 	$("#query-placeholder").replaceWith(`<div id="results-table"></div>`);
-	//store result as string in localstorage
-	localStorage.setItem(JSON.stringify(response.title), JSON.stringify(response))
 	// generate info in a div
 	$("#results-table").replaceWith(`<div id="recipe-summary"></div>`);
 	if (response.vegetarian === true) {
@@ -157,8 +172,8 @@ function generateSummary(response) {
 	stepsArray = response.analyzedInstructions[0].steps;
 	ingredientsArray = response.extendedIngredients
 	console.log(stepsArray[0].step)
-	console.log(typeof(stepsArray.length))
-	$("#recipe-summary").append(`<ul id="list-steps"></ul>`); 
+	console.log(typeof (stepsArray.length))
+	$("#recipe-summary").append(`<ul id="list-steps"></ul>`);
 
 	$.each(stepsArray, function () {
 		$("#list-steps").append($('<li>').text(`${this.number}: ${this.step}`));
@@ -177,7 +192,10 @@ function generateSummary(response) {
 	$("#recipe-summary").append(`<div id="source-url">URL: ${response.sourceUrl}</div>`);
 	$("#recipe-summary").append(`<div id="recipe-image">Image: <img src="${response.image}"/></div>`);
 	$("#recipe-summary").append(`<div id="dish-types">Dish types: ${response.dishTypes}</div>`);
-	$("#recipe-summary").append(`<a href="${response.sourceUrl}" target="_blank"><button id="recipe-button" class="btn btn-secondary btn-lg">Search</button></a>`)
+	$("#recipe-summary").append(`<a href="${response.sourceUrl}" target="_blank"><button id="recipe-button" class="btn btn-secondary btn-lg">View source website</button></a>`)
+		//store result as string in localstorage
+		localStorage.setItem(JSON.stringify(response.title), JSON.stringify(response))
+		checkPreviousSearchList(JSON.stringify(response.title));
 }
 
 function displayData(page) {
