@@ -3,8 +3,7 @@ $(document).ready(readyDocument);
 function readyDocument() {
 	console.log("Ready");
 	pageNumber = 1;
-	resultArray = [];
-	for (var i = 0; i < 5; i++) {
+	for (var i = 0; i < 4; i++) {
 		checkPreviousSearchList(localStorage.key(i))
 	}
 }
@@ -13,14 +12,12 @@ function checkPreviousSearchList(keyNumber) {
 	result = localStorage.getItem(keyNumber)
 	if (result != null) {
 		result = JSON.parse(result);
-		resultArray.push(result)
 		$("#previous-search-area").append(
 			`<li id="${result.id}">Previous search result:<a onclick="callPreviousSearchResult(${result.id})">${result.title}</a></li>`
 		)
 		if ($('#previous-search-area li').length > 5) {
 			keyToRemove = $('#previous-search-area li').first().attr("id");
 			localStorage.removeItem(keyToRemove);
-			resultArray = _.drop(resultArray)
 			$('#previous-search-area li').first().remove();
 		}
 	}
@@ -187,15 +184,17 @@ function generateSummary(response) {
 		console.log("DF " + response.vegetarian)
 		$("#recipe-summary").append(`<div id="icon-dairy-free">DF</div>`);
 	}
-	if (response.analyzedInstructions > 0) {
+	if (response.analyzedInstructions[0] !== undefined) {
 		stepsArray = response.analyzedInstructions[0].steps;
 		console.log(stepsArray[0].step)
 		console.log(typeof (stepsArray.length))
-		$("#recipe-summary").append(`<ul id="list-steps"></ul>`);
+		$("#recipe-summary").append(`<ul id="list-steps">What to do</ul>`);
 
 		$.each(stepsArray, function () {
 			$("#list-steps").append($('<li>').text(`${this.number}: ${this.step}`));
 		})
+	} else {
+		$("#recipe-summary").append(`<ul id="list-steps">No recipe steps found - visit website for more information</ul>`);
 	}
 
 	$("#recipe-summary").append(`<ul id="list-recipe"></ul>`);
