@@ -223,7 +223,11 @@ function generateSummary(response) {
 	pageNumber = sessionStorage.getItem("pageNumber")
 	pageNumber = parseInt(pageNumber)
 
+	if (sessionStorage.getItem("recipeArray") !== null) {
 	$("#recipe-summary").append(`<button id="back-to-search" onclick="displayData(pageNumber)" class="btn btn-secondary btn-lg">Go back</button></a>`)
+	} else {
+	$("#recipe-summary").append(`<button id="back-to-search" onclick="resetSearch()" class="btn btn-secondary btn-lg">Close</button></a>`)
+	}
 }
 
 function displayData(page) {
@@ -282,6 +286,7 @@ function removeSearchData() {
 // reset search to starting state
 function resetSearch() {
 	removeSearchData();
+	$("#results-table").replaceWith('<div id="query-placeholder"><p>RESULTS GO HERE</p></div>');
 	$("#search-next").remove();
 	$("#search-prev").remove();
 	$("#reset-search").remove();
@@ -333,4 +338,3 @@ function decrementPage(pageNumber) {
 	return pageNumber;
 }
 
-// $("#previous-search-area a").click(`generateSummary(JSON.parse(localStorage.getItem(localStorage.key("${result.title}"))));`)
