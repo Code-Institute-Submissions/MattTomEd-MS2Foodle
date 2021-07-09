@@ -2,22 +2,36 @@ $(document).ready(readyDocument);
 
 function readyDocument() {
 	console.log("Ready");
+	pageNumber = 1;
 	resultArray = [];
 	for (var i = 0; i < 5; i++) {
 		checkPreviousSearchList(localStorage.key(i))
 	}
 }
 
-function checkPreviousSearchList(key) {
-	result = localStorage.getItem(key)
-	result = JSON.parse(result);
-	resultArray.push(result)
-	$("#previous-search-area").append(
-		`<li>Previous search result: <a href="">${result.title}</a></li>`
-	)
-	if ($('#previous-search-area li').length > 5) {
-		$('#previous-search-area li').first().remove();
+function checkPreviousSearchList(keyNumber) {
+	result = localStorage.getItem(keyNumber)
+	if (result != null) {
+		result = JSON.parse(result);
+		resultArray.push(result)
+		$("#previous-search-area").append(
+			`<li id="${result.id}">Previous search result:<a onclick="callPreviousSearchResult(${result.id})">${result.title}</a></li>`
+		)
+		if ($('#previous-search-area li').length > 5) {
+			keyToRemove = $('#previous-search-area li').first().attr("id");
+			localStorage.removeItem(keyToRemove);
+			resultArray = _.drop(resultArray)
+			$('#previous-search-area li').first().remove();
+		}
 	}
+}
+
+function callPreviousSearchResult(id) {
+	keyToRemove = $(`#previous-search-area #${id}`).first();
+	localStorage.removeItem(keyToRemove);
+	keyToRemove.remove();
+	generateSummary(JSON.parse(localStorage.getItem(id)));
+	console.log("CLICKED");
 }
 
 // Remove grammar from
@@ -140,7 +154,7 @@ function executeSearch(cb) {
 		}
 
 		// save search list to localstorage 
-		localStorage.setItem("recipeArray", JSON.stringify(recipeArray))
+		sessionStorage.setItem("recipeArray", JSON.stringify(recipeArray))
 	});
 
 	return false;
@@ -183,7 +197,7 @@ function generateSummary(response) {
 			$("#list-steps").append($('<li>').text(`${this.number}: ${this.step}`));
 		})
 	}
-	
+
 	$("#recipe-summary").append(`<ul id="list-recipe"></ul>`);
 	ingredientsArray = response.extendedIngredients
 	$.each(ingredientsArray, function () {
@@ -200,11 +214,11 @@ function generateSummary(response) {
 	$("#recipe-summary").append(`<a href="${response.sourceUrl}" target="_blank"><button id="recipe-button" class="btn btn-secondary btn-lg">View source website</button></a>`)
 
 	//store result as string in localstorage
-	localStorage.setItem(JSON.stringify(response.title), JSON.stringify(response))
-	checkPreviousSearchList(JSON.stringify(response.title));
+	localStorage.setItem(JSON.stringify(response.id), JSON.stringify(response))
+	checkPreviousSearchList(JSON.stringify(response.id));
 
 	// create back button for search, return last known page number
-	recipeArray = localStorage.getItem("recipeArray")
+	recipeArray = sessionStorage.getItem("recipeArray")
 	recipeArray = JSON.parse(recipeArray);
 	pageNumber = sessionStorage.getItem("pageNumber")
 	pageNumber = parseInt(pageNumber)
@@ -318,3 +332,5 @@ function decrementPage(pageNumber) {
 	--pageNumber;
 	return pageNumber;
 }
+
+// $("#previous-search-area a").click(`generateSummary(JSON.parse(localStorage.getItem(localStorage.key("${result.title}"))));`)
