@@ -8,6 +8,7 @@
     <title>Foodle - Know Your Food</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/81f76c3d4f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" media="screen" />
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script type="text/javascript">
@@ -21,7 +22,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-8">
-                <img class="img-fluid" src="assets/images/foodle.png" / alt="Website logo: Foodle">
+                <img class="img-fluid" src="assets/images/foodle.png" alt="Website logo: Foodle" />
             </div>
         </div>
     </div>
@@ -48,7 +49,7 @@
                     <div class="col-2 justify-content-start px-0">
                         <p class="white-text-color">Diet:</p>
                     </div>
-                    <div class="col-8 justify-content end px-0">
+                    <div class="col-8 justify-content-end px-0">
                         <select class="form-select form-select-lg" id="diet" aria-label=".form-select-lg example">
                             <option value=" " selected>No preference</option>
                             <option value="vegetarian">Vegetarian</option>
@@ -60,10 +61,10 @@
             </div>
             <div class="container-fluid">
                 <div class="row justify-content-center">
-                    <div class="col-8 d-flex justify-content-center" id="checkbox-reveal"><p>Intolerances</p></div>
-                </div>
-                <div class="row justify-content-center">
-                    <div id="checkbox-select" class="col-8 justify-content-center">
+                    <div class="col-4 px-0 reveal" id="intolerance-reveal">
+                        <p>Intolerances<i class="fas fa-chevron-right"></i></p>
+                    </div>
+                    <div class="col-6 justify-content-center checkbox-select">
                         <div class="btn-group-horizontal" role="group" aria-label="Intolerances" id="intolerance">
                             <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
                             <label class="btn btn-outline-primary" for="btncheck1">Dairy</label>
@@ -98,10 +99,15 @@
                             <input type="checkbox" class="btn-check" id="btncheck11" autocomplete="off">
                             <label class="btn btn-outline-primary" for="btncheck11">Wheat</label>
                         </div>
-
-
-
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-4 px-0 reveal" id="cuisine-reveal">
+                        <p>Cuisines<i class="fas fa-chevron-right"></i></p>
+                    </div>
+                    <div class="col-6 justify-content-center checkbox-select">
                         <div class="btn-group-horizontal" role="group" aria-label="Cuisines" id="cuisine">
+
                             <input type="checkbox" class="btn-check " id="cuicheck1" autocomplete="off">
                             <label class="btn btn-outline-primary " for="cuicheck1">African</label>
 
@@ -158,7 +164,8 @@
                         </div>
                     </div>
                 </div>
-
+            </div>
+            <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="col-2 justify-content-start px-0 white-text-color">
                         <p class="">Meal type:</p>
@@ -179,6 +186,8 @@
                         </select>
                     </div>
                 </div>
+            </div>
+            <div class="container-fluid">
                 <div class="row justify-content-center">
                     <button type="submit" id="query-search-button" class="btn btn-secondary btn-lg"
                         onclick="return executeSearch()">Search</button>
@@ -186,6 +195,7 @@
                         feeling
                         lucky</button>
                 </div>
+            </div>
         </form>
     </div>
     <div class="row justify-content-center">

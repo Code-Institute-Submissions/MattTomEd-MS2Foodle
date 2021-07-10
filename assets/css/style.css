@@ -18,6 +18,17 @@ body {
     color: #000000!important;
 }
 
+.table {
+    color: #ffffff!important;
+}
+
+.table-primary {
+    color: #ffffff!important;
+}
+
+.table-dark {
+    --bs-table-bg: rgba(0,0,0,.8)
+}
 
 .subtitle > p, h2 {
     font-family: 'Poppins', sans-serif;
@@ -32,4 +43,12 @@ body {
 #previous-search-area a:hover {
     color: rgb(168, 168, 255);
     cursor: pointer;
+}
+
+.reveal:hover {
+    cursor: pointer;
+}
+
+.fa-chevron-right {
+    margin: 10%;
 }
