@@ -7,21 +7,19 @@ body {
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
+    color: #ffffff;
 };
 
 .white-text-color {
-    color: #ffffff;
+    color: #ffffff!important;
 }
 
-.table th {
-    color: #ffffff;
+.black-text-color {
+    color: #000000!important;
 }
 
-.table tr, .table td {
-    color: #ffffff;
-}
 
-.subtitle {
+.subtitle > p, h2 {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     color: #ffffff;
@@ -29,10 +27,6 @@ body {
 
 #previous-search-area {
     list-style-type: none;
-}
-
-#previous-search-area li {
-    color: #ffffff;
 }
 
 #previous-search-area a:hover {

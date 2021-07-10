@@ -29,7 +29,7 @@
         <form>
             <div class="row justify-content-center">
                 <div class="col-10">
-                    <div class="form-floating">
+                    <div class="form-floating black-text-color">
                         <input type="text" class="form-control" id="query-include" placeholder="text" value="" required>
                         <label for="floatingInputGrid">Search for a recipe (Required)</label>
                     </div>
@@ -37,7 +37,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-10">
-                    <div class="form-floating">
+                    <div class="form-floating black-text-color">
                         <input type="text" class="form-control" id="query-exclude" placeholder="text" value="">
                         <label for="floatingInputGrid">Exclude these foods</label>
                     </div>
@@ -46,7 +46,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-2 justify-content-start px-0">
-                        <p>Diet:</p>
+                        <p class="white-text-color">Diet:</p>
                     </div>
                     <div class="col-8 justify-content end px-0">
                         <select class="form-select form-select-lg" id="diet" aria-label=".form-select-lg example">
@@ -59,6 +59,9 @@
                 </div>
             </div>
             <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-8 d-flex justify-content-center" id="checkbox-reveal"><p>Intolerances</p></div>
+                </div>
                 <div class="row justify-content-center">
                     <div id="checkbox-select" class="col-8 justify-content-center">
                         <div class="btn-group-horizontal" role="group" aria-label="Intolerances" id="intolerance">
@@ -157,8 +160,8 @@
                 </div>
 
                 <div class="row justify-content-center">
-                    <div class="col-2 justify-content-start px-0">
-                        <p>Meal type:</p>
+                    <div class="col-2 justify-content-start px-0 white-text-color">
+                        <p class="">Meal type:</p>
                     </div>
                     <div class="col-8 justify-content end px-0">
                         <select class="form-select form-select-lg" id="dish-type" aria-label=".form-select-lg example">
@@ -204,19 +207,19 @@
         <div class="col-10" id="contact-form-area">
             <form id="contact-form" onsubmit="return sendMail()">
                 <div class="form-group">
-                    <div class="form-floating">
+                    <div class="form-floating black-text-color">
                         <input type="text" class="form-control" id="name" placeholder="Enter your name (required)"
                             name="name" required />
                         <label for="name">Enter your name (required)</label>
                     </div>
                     <div class="row py-1"></div>
-                    <div class="form-floating">
+                    <div class="form-floating black-text-color">
                         <input type="email" class="form-control" id="emailAddress" aria-describedby="detailsHelp"
                             placeholder="Enter your email (required)" name="emailAddress" required />
                         <label for="emailAddress">Enter your email (required)</label>
                     </div>
                     <div class="row py-1"></div>
-                    <small id="detailsHelp" class="form-text text-muted">Your details will be stored securely.</small>
+                    <small id="detailsHelp" class="white-text-color">Your details will be stored securely.</small>
                 </div>
                 <div class="row py-3"></div>
                 <select class="form-select" aria-label="Contact query choices" name="queryTopic" id="queryTopic">
@@ -226,7 +229,7 @@
                     <option value="Miscellaneous query">Something else!</option>
                 </select>
                 <div class="row py-1"></div>
-                <div class="form-floating">
+                <div class="form-floating black-text-color">
                     <textarea class="form-control" placeholder="Enter your text below" name="commentArea"
                         id="commentArea" style="height: 300px" name="Comments"></textarea>
                     <label for="commentArea">Enter your text below</label>

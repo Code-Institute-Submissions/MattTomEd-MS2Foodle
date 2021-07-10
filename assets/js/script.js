@@ -6,6 +6,7 @@ function readyDocument() {
 	for (var i = 0; i < 4; i++) {
 		checkPreviousSearchList(localStorage.key(i))
 	}
+
 }
 
 function checkPreviousSearchList(keyNumber) {
