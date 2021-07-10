@@ -1,7 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+
 body {
-    background: url('../images/BackgroundImage.jpg'); 
+    background: url('../images/backgroundimage.jpg'); 
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
 };
+
+.white-text-color {
+    color: #ffffff;
+}
+
+.table th {
+    color: #ffffff;
+}
+
+.table tr, .table td {
+    color: #ffffff;
+}
+
+.subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+#previous-search-area {
+    list-style-type: none;
+}
+
+#previous-search-area li {
+    color: #ffffff;
+}
+
+#previous-search-area a:hover {
+    color: rgb(168, 168, 255);
+    cursor: pointer;
+}

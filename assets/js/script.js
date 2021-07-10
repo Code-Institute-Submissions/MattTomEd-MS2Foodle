@@ -12,13 +12,13 @@ function checkPreviousSearchList(keyNumber) {
 	result = localStorage.getItem(keyNumber)
 	if (result != null) {
 		result = JSON.parse(result);
-		$("#previous-search-area").append(
-			`<li id="${result.id}">Previous search result:<a onclick="callPreviousSearchResult(${result.id})">${result.title}</a></li>`
+		$("#previous-search-area").prepend(
+			`<li id="${result.id}" class="d-flex justify-content-center"><a onclick="callPreviousSearchResult(${result.id})">${result.title}</a></li>`
 		)
 		if ($('#previous-search-area li').length > 5) {
-			keyToRemove = $('#previous-search-area li').first().attr("id");
+			keyToRemove = $('#previous-search-area li').last().attr("id");
 			localStorage.removeItem(keyToRemove);
-			$('#previous-search-area li').first().remove();
+			$('#previous-search-area li').last().remove();
 		}
 	}
 }
@@ -129,6 +129,7 @@ function executeSearch(cb) {
 		// remove previous pagination if user searches again w/o without clearing
 		$("#search-next").remove();
 		$("#search-prev").remove();
+		$("#reset-search").remove();
 
 		// display data
 		displayData(pageNumber);
@@ -164,8 +165,8 @@ function generateSummary(response) {
 	// store page number to session storage
 	sessionStorage.setItem("pageNumber", JSON.stringify(pageNumber));
 	// remove existing data and placeholder if user manually enters URL (if bookmarked)
-	$("#recipe-summary").replaceWith(`<table class="table" id="results-table"></table>`);
-	$("#query-placeholder").replaceWith(`<table class="table" id="results-table"></table>`);
+	$("#recipe-summary").replaceWith(`<table class="table white-text-color" id="results-table"></table>`);
+	$("#query-placeholder").replaceWith(`<table class="table white-text-color" id="results-table"></table>`);
 	// generate info in a div
 	$("#results-table").replaceWith(`<div id="recipe-summary"></div>`);
 	if (response.vegetarian === true) {
@@ -251,11 +252,11 @@ function printData(array) {
 		prepTime = this.readyInMinutes;
 		convertTime(prepTime);
 		$("#results-table").append(
-			$('<tr class="table-primary table-hover">').append(
-				$('<td class="table-primary table-hover">').text(this.title),
-				$('<td class="table-primary table-hover">').text(convertTime(prepTime)),
-				$('<td class="table-primary table-hover">').text(this.servings),
-				$('<td class="table-primary table-hover">').append(`<button type="submit" id="display-summary" class="btn btn-secondary"
+			$('<tr class="table-primary table-hover white-text-color">').append(
+				$('<td class="table-primary table-hover white-text-color">').text(this.title),
+				$('<td class="table-primary table-hover white-text-color">').text(convertTime(prepTime)),
+				$('<td class="table-primary table-hover white-text-color">').text(this.servings),
+				$('<td class="table-primary table-hover white-text-color">').append(`<button type="submit" id="display-summary" class="btn btn-secondary"
 				onclick="${foodId}">See recipe</button>`)
 			));
 	});
@@ -277,15 +278,15 @@ function convertTime(time) {
 
 // remove existing search data
 function removeSearchData() {
-	$("#query-placeholder").replaceWith("<table class='table' id='results-table'></table>");
-	$("#recipe-summary").replaceWith("<table class='table' id='results-table'></table>")
+	$("#query-placeholder").replaceWith("<table class='table white-text-color' id='results-table'></table>");
+	$("#recipe-summary").replaceWith("<table class='table white-text-color' id='results-table'></table>")
 	$("#results-table tr").remove();
 }
 
 // reset search to starting state
 function resetSearch() {
 	removeSearchData();
-	$("#results-table").replaceWith('<div id="query-placeholder"><p>RESULTS GO HERE</p></div>');
+	$("#results-table").replaceWith('<div id="query-placeholder" class="white-text-color"><p>RESULTS GO HERE</p></div>');
 	$("#search-next").remove();
 	$("#search-prev").remove();
 	$("#reset-search").remove();

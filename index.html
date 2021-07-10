@@ -15,14 +15,13 @@
             emailjs.init("user_Y8LGmHGwFr0TlaJMWDVr3");
         })();
     </script>
-    </script>
 </head>
 
 <body>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-10">
-                <img class="img-fluid" src="assets/images/Foodle.png"/ alt="Website logo: Foodle">
+            <div class="col-8">
+                <img class="img-fluid" src="assets/images/foodle.png" / alt="Website logo: Foodle">
             </div>
         </div>
     </div>
@@ -157,30 +156,29 @@
                     </div>
                 </div>
 
-                    <div class="row justify-content-center">
-                        <div class="col-2 justify-content-start px-0">
-                            <p>Meal type:</p>
-                        </div>
-                        <div class="col-8 justify-content end px-0">
-                            <select class="form-select form-select-lg" id="dish-type"
-                                aria-label=".form-select-lg example">
-                                <option value=" " selected>No preference</option>
-                                <option value="breakfast">Breakfast</option>
-                                <option value="appetizer">Appetizer</option>
-                                <option value="soup">Soup</option>
-                                <option value="main course">Main course</option>
-                                <option value="side dish">Side dish</option>
-                                <option value="dessert">Dessert</option>
-                                <option value="salad">Salad</option>
-                                <option value="bread">Bread</option>
-                                <option value="sauce">Sauce</option>
-                                <option value="drink">Drink</option>
-                            </select>
-                        </div>
+                <div class="row justify-content-center">
+                    <div class="col-2 justify-content-start px-0">
+                        <p>Meal type:</p>
                     </div>
+                    <div class="col-8 justify-content end px-0">
+                        <select class="form-select form-select-lg" id="dish-type" aria-label=".form-select-lg example">
+                            <option value=" " selected>No preference</option>
+                            <option value="breakfast">Breakfast</option>
+                            <option value="appetizer">Appetizer</option>
+                            <option value="soup">Soup</option>
+                            <option value="main course">Main course</option>
+                            <option value="side dish">Side dish</option>
+                            <option value="dessert">Dessert</option>
+                            <option value="salad">Salad</option>
+                            <option value="bread">Bread</option>
+                            <option value="sauce">Sauce</option>
+                            <option value="drink">Drink</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="row justify-content-center">
                     <button type="submit" id="query-search-button" class="btn btn-secondary btn-lg"
-                        onclick="executeSearch()">Search</button>
+                        onclick="return executeSearch()">Search</button>
                     <button type="submit" id="lucky-button" class="btn btn-secondary btn-lg" onclick="">I'm
                         feeling
                         lucky</button>
@@ -188,8 +186,11 @@
         </form>
     </div>
     <div class="row justify-content-center">
-        <div class="col-6">
-            <ul id="previous-search-area">Previous recipes you've looked at:</ul>
+        <div class="col-10">
+            <h2 class="subtitle d-flex justify-content-center">Previous recipes you've looked at</h2>
+        </div>
+        <div class="col-10">
+            <ul id="previous-search-area"></ul>
         </div>
     </div>
     <div class="row justify-content-center">
