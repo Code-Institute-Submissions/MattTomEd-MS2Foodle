@@ -6,7 +6,14 @@ function readyDocument() {
 	for (var i = 0; i < 4; i++) {
 		checkPreviousSearchList(localStorage.key(i))
 	}
-
+	$("#intolerance").hide();
+	$("#cuisine").hide();
+	$("#intolerance-reveal").click(function() {
+		$("#intolerance").toggle(500);
+	})
+	$("#cuisine-reveal").click(function() {
+		$("#cuisine").toggle(500);
+	})
 }
 
 function checkPreviousSearchList(keyNumber) {
@@ -166,8 +173,8 @@ function generateSummary(response) {
 	// store page number to session storage
 	sessionStorage.setItem("pageNumber", JSON.stringify(pageNumber));
 	// remove existing data and placeholder if user manually enters URL (if bookmarked)
-	$("#recipe-summary").replaceWith(`<table class="table white-text-color" id="results-table"></table>`);
-	$("#query-placeholder").replaceWith(`<table class="table white-text-color" id="results-table"></table>`);
+	$("#recipe-summary").replaceWith(`<table class="table table-dark table-hover" id="results-table"><thead id="results-table-head"></thead><tbody id="results-table-body"></tbody></table>`);
+	$("#query-placeholder").replaceWith(`<table class="table table-dark table-hover" id="results-table"><thead></thead id="results-table-head"><tbody id="results-table-body"></tbody></table>`);
 	// generate info in a div
 	$("#results-table").replaceWith(`<div id="recipe-summary"></div>`);
 	if (response.vegetarian === true) {
@@ -242,8 +249,8 @@ function displayData(page) {
 }
 
 function printData(array) {
-	$("#results-table").append(
-		$('<tr><th scope="col">Recipe</th><th scope="col">Preparation time</th><th scope="col">Servings</th></tr>')
+	$("#results-table-head").append(
+		$('<tr><th scope="col">Recipe</th><th scope="col">Preparation time</th><th scope="col">Servings</th><th scope="col"></th></tr>')
 	)
 	$.each(array, function (index, recipe) {
 		foodIdString = this.id;
@@ -252,12 +259,12 @@ function printData(array) {
 		console.log("ID is " + foodIdString)
 		prepTime = this.readyInMinutes;
 		convertTime(prepTime);
-		$("#results-table").append(
-			$('<tr class="table-primary table-hover white-text-color">').append(
-				$('<td class="table-primary table-hover white-text-color">').text(this.title),
-				$('<td class="table-primary table-hover white-text-color">').text(convertTime(prepTime)),
-				$('<td class="table-primary table-hover white-text-color">').text(this.servings),
-				$('<td class="table-primary table-hover white-text-color">').append(`<button type="submit" id="display-summary" class="btn btn-secondary"
+		$("#results-table-body").append(
+			$('<tr>').append(
+				$('<td>').text(this.title),
+				$('<td>').text(convertTime(prepTime)),
+				$('<td class="justify-content-center">').text(this.servings),
+				$('<td>').append(`<button type="submit" id="display-summary" class="btn btn-secondary"
 				onclick="${foodId}">See recipe</button>`)
 			));
 	});
@@ -279,8 +286,8 @@ function convertTime(time) {
 
 // remove existing search data
 function removeSearchData() {
-	$("#query-placeholder").replaceWith("<table class='table white-text-color' id='results-table'></table>");
-	$("#recipe-summary").replaceWith("<table class='table white-text-color' id='results-table'></table>")
+	$("#query-placeholder").replaceWith("<table class='table table-dark table-hover' id='results-table'><thead id='results-table-head'></thead><tbody id='results-table-body'></tbody></table>");
+	$("#recipe-summary").replaceWith("<table class='table table-dark table-hover' id='results-table'><thead id='results-table-head'></thead><tbody id='results-table-body'></tbody></table>")
 	$("#results-table tr").remove();
 }
 
