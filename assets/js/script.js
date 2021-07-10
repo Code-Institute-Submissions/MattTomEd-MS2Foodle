@@ -21,7 +21,7 @@ function checkPreviousSearchList(keyNumber) {
 	if (result != null) {
 		result = JSON.parse(result);
 		$("#previous-search-area").prepend(
-			`<li id="${result.id}" class="d-flex justify-content-center"><a class="subtitle-light" onclick="callPreviousSearchResult(${result.id})">${result.title}</a></li>`
+			`<li id="${result.id}" class="text-center justify-content-center"><a class="subtitle-light" onclick="callPreviousSearchResult(${result.id})">${result.title}</a></li>`
 		)
 		if ($('#previous-search-area li').length > 5) {
 			keyToRemove = $('#previous-search-area li').last().attr("id");

@@ -36,14 +36,16 @@
                     </div>
                 </div>
             </div>
+            <div class="row py-3"></div>
             <div class="row justify-content-center">
                 <div class="col-10">
                     <div class="form-floating black-text-color">
                         <input type="text" class="form-control" id="query-exclude" placeholder="text" value="">
-                        <label for="floatingInputGrid">Exclude these foods</label>
+                        <label for="floatingInputGrid">Enter foods to exclude (Optional)</label>
                     </div>
                 </div>
             </div>
+            <div class="row py-3"></div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-2 px-0 d-flex align-items-center">
@@ -59,6 +61,7 @@
                     </div>
                 </div>
             </div>
+            <div class="row py-3"></div>
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="col-2 justify-content-start px-0 white-text-color">
@@ -86,7 +89,7 @@
                     <div class="col-3 px-0 reveal" id="cuisine-reveal">
                         <p class="subtitle-light">Cuisines<i class="fas fa-chevron-right"></i></p>
                     </div>
-                    <div class="col-7 justify-content-center checkbox-select">
+                    <div class="col-7 justify-content-center text-center checkbox-select">
                         <div class="btn-group-horizontal" role="group" aria-label="Cuisines" id="cuisine">
 
                             <input type="checkbox" class="btn-check" id="cuicheck1" autocomplete="off">
@@ -149,7 +152,7 @@
                     <div class="col-3 px-0 reveal" id="intolerance-reveal">
                         <p class="subtitle-light">Intolerances<i class="fas fa-chevron-right"></i></p>
                     </div>
-                    <div class="col-7 justify-content-center checkbox-select">
+                    <div class="col-7 justify-content-center text-center checkbox-select">
                         <div class="btn-group-horizontal" role="group" aria-label="Intolerances" id="intolerance">
                             <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
                             <label class="btn btn-danger btn-sm" for="btncheck1">Dairy</label>
@@ -191,6 +194,7 @@
                 <div class="row justify-content-center">
                     <button type="submit" id="query-search-button" class="btn btn-secondary btn-lg"
                         onclick="return executeSearch()">Search</button>
+                        <div class="row py-3"></div>
                     <button type="submit" id="lucky-button" class="btn btn-secondary btn-lg" onclick="">I'm
                         feeling
                         lucky</button>
@@ -198,9 +202,10 @@
             </div>
         </form>
     </div>
-    <div class="row justify-content-center">
+    <div class="row py-3"></div>
+    <div class="row d-flex justify-content-center">
         <div class="col-10">
-            <h2 class="subtitle d-flex justify-content-center">Previous recipes you've looked at</h2>
+            <h2 class="subtitle text-center justify-content-center">Previous recipes you've looked at</h2>
         </div>
         <div class="col-10">
             <ul id="previous-search-area"></ul>
