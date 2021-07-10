@@ -50,7 +50,7 @@
                         <p class="subtitle-light">Diet:</p>
                     </div>
                     <div class="col-8 justify-content-end px-0">
-                        <select class="form-select form-select-lg" id="diet" aria-label=".form-select-lg example">
+                        <select class="form-select form-select" id="diet" aria-label=".form-select-lg example">
                             <option value=" " selected>No preference</option>
                             <option value="vegetarian">Vegetarian</option>
                             <option value="vegan">Vegan</option>
@@ -61,46 +61,27 @@
             </div>
             <div class="container-fluid">
                 <div class="row justify-content-center">
-                    <div class="col-3 px-0 reveal" id="intolerance-reveal">
-                        <p class="subtitle-light">Intolerances<i class="fas fa-chevron-right"></i></p>
+                    <div class="col-2 justify-content-start px-0 white-text-color">
+                        <p class="subtitle-light">Meal type:</p>
                     </div>
-                    <div class="col-7 justify-content-center checkbox-select">
-                        <div class="btn-group-horizontal" role="group" aria-label="Intolerances" id="intolerance">
-                            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
-                            <label class="btn btn-danger btn-sm" for="btncheck1">Dairy</label>
-
-                            <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
-                            <label class="btn btn-danger btn-sm" for="btncheck2">Egg</label>
-
-                            <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
-                            <label class="btn btn-danger btn-sm" for="btncheck3">Gluten</label>
-
-                            <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off">
-                            <label class="btn btn-danger btn-sm" for="btncheck4">Peanut</label>
-
-                            <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off">
-                            <label class="btn btn-danger btn-sm" for="btncheck5">Sesame</label>
-
-                            <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off">
-                            <label class="btn btn-danger btn-sm" for="btncheck6">Seafood</label>
-
-                            <input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off">
-                            <label class="btn btn-danger btn-sm" for="btncheck7">Shellfish</label>
-
-                            <input type="checkbox" class="btn-check" id="btncheck8" autocomplete="off">
-                            <label class="btn btn-danger btn-sm" for="btncheck8">Soy</label>
-
-                            <input type="checkbox" class="btn-check" id="btncheck9" autocomplete="off">
-                            <label class="btn btn-danger btn-sm" for="btncheck9">Sulfite</label>
-
-                            <input type="checkbox" class="btn-check" id="btncheck10" autocomplete="off">
-                            <label class="btn btn-danger btn-sm" for="btncheck10">Tree Nut</label>
-
-                            <input type="checkbox" class="btn-check" id="btncheck11" autocomplete="off">
-                            <label class="btn btn-danger btn-sm" for="btncheck11">Wheat</label>
-                        </div>
+                    <div class="col-8 justify-content end px-0">
+                        <select class="form-select form-select" id="dish-type" aria-label=".form-select-lg example">
+                            <option value=" " selected>No preference</option>
+                            <option value="breakfast">Breakfast</option>
+                            <option value="appetizer">Appetizer</option>
+                            <option value="soup">Soup</option>
+                            <option value="main course">Main course</option>
+                            <option value="side dish">Side dish</option>
+                            <option value="dessert">Dessert</option>
+                            <option value="salad">Salad</option>
+                            <option value="bread">Bread</option>
+                            <option value="sauce">Sauce</option>
+                            <option value="drink">Drink</option>
+                        </select>
                     </div>
                 </div>
+            </div>
+            <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="col-3 px-0 reveal" id="cuisine-reveal">
                         <p class="subtitle-light">Cuisines<i class="fas fa-chevron-right"></i></p>
@@ -164,26 +145,45 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="container-fluid">
                 <div class="row justify-content-center">
-                    <div class="col-2 justify-content-start px-0 white-text-color">
-                        <p class="subtitle-light">Meal type:</p>
+                    <div class="col-3 px-0 reveal" id="intolerance-reveal">
+                        <p class="subtitle-light">Intolerances<i class="fas fa-chevron-right"></i></p>
                     </div>
-                    <div class="col-8 justify-content end px-0">
-                        <select class="form-select form-select-lg" id="dish-type" aria-label=".form-select-lg example">
-                            <option value=" " selected>No preference</option>
-                            <option value="breakfast">Breakfast</option>
-                            <option value="appetizer">Appetizer</option>
-                            <option value="soup">Soup</option>
-                            <option value="main course">Main course</option>
-                            <option value="side dish">Side dish</option>
-                            <option value="dessert">Dessert</option>
-                            <option value="salad">Salad</option>
-                            <option value="bread">Bread</option>
-                            <option value="sauce">Sauce</option>
-                            <option value="drink">Drink</option>
-                        </select>
+                    <div class="col-7 justify-content-center checkbox-select">
+                        <div class="btn-group-horizontal" role="group" aria-label="Intolerances" id="intolerance">
+                            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                            <label class="btn btn-danger btn-sm" for="btncheck1">Dairy</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                            <label class="btn btn-danger btn-sm" for="btncheck2">Egg</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                            <label class="btn btn-danger btn-sm" for="btncheck3">Gluten</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off">
+                            <label class="btn btn-danger btn-sm" for="btncheck4">Peanut</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off">
+                            <label class="btn btn-danger btn-sm" for="btncheck5">Sesame</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off">
+                            <label class="btn btn-danger btn-sm" for="btncheck6">Seafood</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off">
+                            <label class="btn btn-danger btn-sm" for="btncheck7">Shellfish</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck8" autocomplete="off">
+                            <label class="btn btn-danger btn-sm" for="btncheck8">Soy</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck9" autocomplete="off">
+                            <label class="btn btn-danger btn-sm" for="btncheck9">Sulfite</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck10" autocomplete="off">
+                            <label class="btn btn-danger btn-sm" for="btncheck10">Tree Nut</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck11" autocomplete="off">
+                            <label class="btn btn-danger btn-sm" for="btncheck11">Wheat</label>
+                        </div>
                     </div>
                 </div>
             </div>
