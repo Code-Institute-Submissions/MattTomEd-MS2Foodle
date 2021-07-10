@@ -2,10 +2,6 @@ $(document).ready(readyDocument);
 
 function readyDocument() {
 	console.log("Ready");
-	pageNumber = 1;
-	for (var i = 0; i < 4; i++) {
-		checkPreviousSearchList(localStorage.key(i))
-	}
 	$("#intolerance").hide();
 	$("#cuisine").hide();
 	$("#intolerance-reveal").click(function() {
@@ -14,6 +10,10 @@ function readyDocument() {
 	$("#cuisine-reveal").click(function() {
 		$("#cuisine").toggle(500);
 	})
+	pageNumber = 1;
+	for (var i = 0; i < 4; i++) {
+		checkPreviousSearchList(localStorage.key(i))
+	}
 }
 
 function checkPreviousSearchList(keyNumber) {
@@ -21,7 +21,7 @@ function checkPreviousSearchList(keyNumber) {
 	if (result != null) {
 		result = JSON.parse(result);
 		$("#previous-search-area").prepend(
-			`<li id="${result.id}" class="d-flex justify-content-center"><a onclick="callPreviousSearchResult(${result.id})">${result.title}</a></li>`
+			`<li id="${result.id}" class="d-flex justify-content-center"><a class="subtitle-light" onclick="callPreviousSearchResult(${result.id})">${result.title}</a></li>`
 		)
 		if ($('#previous-search-area li').length > 5) {
 			keyToRemove = $('#previous-search-area li').last().attr("id");
