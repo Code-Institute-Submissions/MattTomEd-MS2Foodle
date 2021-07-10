@@ -164,8 +164,8 @@ function generateSummary(response) {
 	// store page number to session storage
 	sessionStorage.setItem("pageNumber", JSON.stringify(pageNumber));
 	// remove existing data and placeholder if user manually enters URL (if bookmarked)
-	$("#recipe-summary").replaceWith(`<div id="results-table"></div>`);
-	$("#query-placeholder").replaceWith(`<div id="results-table"></div>`);
+	$("#recipe-summary").replaceWith(`<table class="table" id="results-table"></table>`);
+	$("#query-placeholder").replaceWith(`<table class="table" id="results-table"></table>`);
 	// generate info in a div
 	$("#results-table").replaceWith(`<div id="recipe-summary"></div>`);
 	if (response.vegetarian === true) {
@@ -241,7 +241,7 @@ function displayData(page) {
 
 function printData(array) {
 	$("#results-table").append(
-		$('<tr><th>Recipe</th><th>Preparation time</th><th>Servings</th></tr>')
+		$('<tr><th scope="col">Recipe</th><th scope="col">Preparation time</th><th scope="col">Servings</th></tr>')
 	)
 	$.each(array, function (index, recipe) {
 		foodIdString = this.id;
@@ -277,8 +277,8 @@ function convertTime(time) {
 
 // remove existing search data
 function removeSearchData() {
-	$("#query-placeholder").replaceWith("<table class='table-primary table-hover' id='results-table'></table>");
-	$("#recipe-summary").replaceWith("<table class='table-primary table-hover' id='results-table'></table>")
+	$("#query-placeholder").replaceWith("<table class='table' id='results-table'></table>");
+	$("#recipe-summary").replaceWith("<table class='table' id='results-table'></table>")
 	$("#results-table tr").remove();
 }
 

@@ -19,156 +19,169 @@
 </head>
 
 <body>
-    <form class="row align-items-center"></form>
-        <div class="row g-2">
-            <div class="col-10">
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="query-include" placeholder="text" value="" required>
-                    <label for="floatingInputGrid">Search for a recipe (Required)</label>
+    <div class="container">
+        <form>
+            <div class="row justify-content-center">
+                <div class="col-10">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="query-include" placeholder="text" value="" required>
+                        <label for="floatingInputGrid">Search for a recipe (Required)</label>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row g-2">
-            <div class="col-10">
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="query-exclude" placeholder="text" value="">
-                    <label for="floatingInputGrid">Exclude these foods</label>
+            <div class="row justify-content-center">
+                <div class="col-10">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="query-exclude" placeholder="text" value="">
+                        <label for="floatingInputGrid">Exclude these foods</label>
+                    </div>
                 </div>
             </div>
-        </div>
-        <select class="form-select form-select-lg mb-3 col-10" id="diet" aria-label=".form-select-lg example">
-            <option value=" " selected>Diet</option>
-            <option value=" ">No preference</option>
-            <option value="vegetarian">Vegetarian</option>
-            <option value="vegan">Vegan</option>
-            <option value="pescetarian">Pescetarian</option>
-        </select>
-        <div class="btn-group-vertical col-10" role="group" aria-label="Intolerances" id="intolerance">
-            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btncheck1">Dairy</label>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-2 justify-content-start">
+                        <p>Diet:</p>
+                    </div>
+                    <div class="col-8 justify-content end">
+                        <select class="form-select form-select-lg" id="diet" aria-label=".form-select-lg example">
+                            <option value=" " selected>No preference</option>
+                            <option value="vegetarian">Vegetarian</option>
+                            <option value="vegan">Vegan</option>
+                            <option value="pescetarian">Pescetarian</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id="checkbox-select" class="row justify-content-center">
+                <div class="btn-group-vertical col-10" role="group" aria-label="Intolerances" id="intolerance">
+                    <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck1">Dairy</label>
 
-            <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btncheck2">Egg</label>
+                    <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck2">Egg</label>
 
-            <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btncheck3">Gluten</label>
+                    <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck3">Gluten</label>
 
-            <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btncheck4">Peanut</label>
+                    <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck4">Peanut</label>
 
-            <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btncheck5">Sesame</label>
+                    <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck5">Sesame</label>
 
-            <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btncheck6">Seafood</label>
+                    <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck6">Seafood</label>
 
-            <input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btncheck7">Shellfish</label>
+                    <input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck7">Shellfish</label>
 
-            <input type="checkbox" class="btn-check" id="btncheck8" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btncheck8">Soy</label>
+                    <input type="checkbox" class="btn-check" id="btncheck8" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck8">Soy</label>
 
-            <input type="checkbox" class="btn-check" id="btncheck9" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btncheck9">Sulfite</label>
+                    <input type="checkbox" class="btn-check" id="btncheck9" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck9">Sulfite</label>
 
-            <input type="checkbox" class="btn-check" id="btncheck10" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btncheck10">Tree Nut</label>
+                    <input type="checkbox" class="btn-check" id="btncheck10" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck10">Tree Nut</label>
 
-            <input type="checkbox" class="btn-check" id="btncheck11" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btncheck11">Wheat</label>
-        </div>
+                    <input type="checkbox" class="btn-check" id="btncheck11" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck11">Wheat</label>
+                </div>
 
-        <div class="btn-group-vertical col-10" role="group" aria-label="Cuisines" id="cuisine">
-            <input type="checkbox" class="btn-check" id="cuicheck1" autocomplete="off">
-            <label class="btn btn-outline-primary" for="cuicheck1">African</label>
+                <div class="btn-group-vertical col-10" role="group" aria-label="Cuisines" id="cuisine">
+                    <input type="checkbox" class="btn-check " id="cuicheck1" autocomplete="off">
+                    <label class="btn btn-outline-primary " for="cuicheck1">African</label>
 
-            <input type="checkbox" class="btn-check" id="cuicheck2" autocomplete="off">
-            <label class="btn btn-outline-primary" for="cuicheck2">Chinese</label>
+                    <input type="checkbox" class="btn-check" id="cuicheck2" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="cuicheck2">Chinese</label>
 
-            <input type="checkbox" class="btn-check" id="cuicheck3" autocomplete="off">
-            <label class="btn btn-outline-primary" for="cuicheck3">Japanese</label>
+                    <input type="checkbox" class="btn-check" id="cuicheck4" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="cuicheck4">Korean</label>
 
-            <input type="checkbox" class="btn-check" id="cuicheck4" autocomplete="off">
-            <label class="btn btn-outline-primary" for="cuicheck4">Korean</label>
+                    <input type="checkbox" class="btn-check" id="cuicheck5" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="cuicheck5">Vietnamese</label>
 
-            <input type="checkbox" class="btn-check" id="cuicheck5" autocomplete="off">
-            <label class="btn btn-outline-primary" for="cuicheck5">Vietnamese</label>
+                    <input type="checkbox" class="btn-check" id="cuicheck6" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="cuicheck6">Thai</label>
 
-            <input type="checkbox" class="btn-check" id="cuicheck6" autocomplete="off">
-            <label class="btn btn-outline-primary" for="cuicheck6">Thai</label>
+                    <input type="checkbox" class="btn-check" id="cuicheck7" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="cuicheck7">Indian</label>
 
-            <input type="checkbox" class="btn-check" id="cuicheck7" autocomplete="off">
-            <label class="btn btn-outline-primary" for="cuicheck7">Indian</label>
+                    <input type="checkbox" class="btn-check" id="cuicheck8" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="cuicheck8">British</label>
 
-            <input type="checkbox" class="btn-check" id="cuicheck8" autocomplete="off">
-            <label class="btn btn-outline-primary" for="cuicheck8">British</label>
+                    <input type="checkbox" class="btn-check" id="cuicheck9" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="cuicheck9">Irish</label>
 
-            <input type="checkbox" class="btn-check" id="cuicheck9" autocomplete="off">
-            <label class="btn btn-outline-primary" for="cuicheck9">Irish</label>
+                    <input type="checkbox" class="btn-check" id="cuicheck10" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="cuicheck10">French</label>
 
-            <input type="checkbox" class="btn-check" id="cuicheck10" autocomplete="off">
-            <label class="btn btn-outline-primary" for="cuicheck10">French</label>
+                    <input type="checkbox" class="btn-check" id="cuicheck11" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="cuicheck11">Italian</label>
 
-            <input type="checkbox" class="btn-check" id="cuicheck11" autocomplete="off">
-            <label class="btn btn-outline-primary" for="cuicheck11">Italian</label>
+                    <input type="checkbox" class="btn-check" id="cuicheck12" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="cuicheck12">Spanish</label>
 
-            <input type="checkbox" class="btn-check" id="cuicheck12" autocomplete="off">
-            <label class="btn btn-outline-primary" for="cuicheck12">Spanish</label>
+                    <input type="checkbox" class="btn-check" id="cuicheck13" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="cuicheck13">Middle Eastern</label>
 
-            <input type="checkbox" class="btn-check" id="cuicheck13" autocomplete="off">
-            <label class="btn btn-outline-primary" for="cuicheck13">Middle Eastern</label>
+                    <input type="checkbox" class="btn-check" id="cuicheck14" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="cuicheck14">Jewish</label>
 
-            <input type="checkbox" class="btn-check" id="cuicheck14" autocomplete="off">
-            <label class="btn btn-outline-primary" for="cuicheck14">Jewish</label>
+                    <input type="checkbox" class="btn-check" id="cuicheck15" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="cuicheck15">American</label>
 
-            <input type="checkbox" class="btn-check" id="cuicheck15" autocomplete="off">
-            <label class="btn btn-outline-primary" for="cuicheck15">American</label>
+                    <input type="checkbox" class="btn-check" id="cuicheck16" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="cuicheck16">German</label>
 
-            <input type="checkbox" class="btn-check" id="cuicheck16" autocomplete="off">
-            <label class="btn btn-outline-primary" for="cuicheck16">German</label>
+                    <input type="checkbox" class="btn-check" id="cuicheck17" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="cuicheck17">Greek</label>
 
-            <input type="checkbox" class="btn-check" id="cuicheck17" autocomplete="off">
-            <label class="btn btn-outline-primary" for="cuicheck17">Greek</label>
+                    <input type="checkbox" class="btn-check" id="cuicheck18" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="cuicheck18">Eastern European</label>
 
-            <input type="checkbox" class="btn-check" id="cuicheck18" autocomplete="off">
-            <label class="btn btn-outline-primary" for="cuicheck18">Eastern European</label>
+                    <input type="checkbox" class="btn-check" id="cuicheck19" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="cuicheck19">Caribbean</label>
 
-            <input type="checkbox" class="btn-check" id="cuicheck19" autocomplete="off">
-            <label class="btn btn-outline-primary" for="cuicheck19">Caribbean</label>
-
-        </div>
-        <select class="form-select form-select-lg mb-3 col-10" id="dish-type" aria-label=".form-select-lg example">
-            <option value=" " selected>Dish Type</option>
-            <option value=" ">No preference</option>
-            <option value="breakfast">Breakfast</option>
-            <option value="appetizer">Appetizer</option>
-            <option value="soup">Soup</option>
-            <option value="main course">Main course</option>
-            <option value="side dish">Side dish</option>
-            <option value="dessert">Dessert</option>
-            <option value="salad">Salad</option>
-            <option value="bread">Bread</option>
-            <option value="sauce">Sauce</option>
-            <option value="drink">Drink</option>
-        </select>
-
-        <button type="submit" id="query-search-button" class="btn btn-secondary btn-lg"
-            onclick="executeSearch()">Search</button>
-        <button type="submit" id="lucky-button" class="btn btn-secondary btn-lg" onclick="">I'm feeling lucky</button>
-    </form>
-    <div class="row">
-        <div class="col-10">
-            <ul id="previous-search-area"></ul>
+                </div>
+            </div>
+            <div class="row">
+                <select class="form-select form-select-lg" id="dish-type" aria-label=".form-select-lg example">
+                    <option value=" " selected>Dish Type</option>
+                    <option value=" ">No preference</option>
+                    <option value="breakfast">Breakfast</option>
+                    <option value="appetizer">Appetizer</option>
+                    <option value="soup">Soup</option>
+                    <option value="main course">Main course</option>
+                    <option value="side dish">Side dish</option>
+                    <option value="dessert">Dessert</option>
+                    <option value="salad">Salad</option>
+                    <option value="bread">Bread</option>
+                    <option value="sauce">Sauce</option>
+                    <option value="drink">Drink</option>
+                </select>
+            </div>
+            <div class="row justify-content-center">
+                <button type="submit" id="query-search-button" class="btn btn-secondary btn-lg"
+                    onclick="executeSearch()">Search</button>
+                <button type="submit" id="lucky-button" class="btn btn-secondary btn-lg" onclick="">I'm feeling
+                    lucky</button>
+            </div>
+        </form>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <ul id="previous-search-area">Previous recipes you've looked at:</ul>
         </div>
     </div>
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-10" id="results-area">
             <div id="query-placeholder">
                 <p>RESULTS GO HERE</p>
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-10" id="contact-form-area">
             <form id="contact-form" onsubmit="return sendMail()">
                 <div class="form-group">
@@ -203,6 +216,7 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
+    </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
