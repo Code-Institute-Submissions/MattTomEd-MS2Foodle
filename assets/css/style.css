@@ -26,13 +26,23 @@ body {
     color: #ffffff!important;
 }
 
+.btn-secondary {
+    margin: 5px 5px;
+}
+
 .table-dark {
     --bs-table-bg: rgba(0,0,0,.8)
 }
 
-.subtitle > p, h2 {
+.subtitle {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
+    color: #ffffff;
+}
+
+.subtitle-light {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
     color: #ffffff;
 }
 
