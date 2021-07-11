@@ -1,17 +1,17 @@
 $(document).ready(readyDocument);
 
 function readyDocument() {
-	console.log("Ready");
-	$("#intolerance").hide();
-	$("#cuisine").hide();
-	$("#intolerance-reveal").click(function() {
-		$("#intolerance").toggle(500);
+    console.log("Ready");
+    $("#intolerance").hide();
+    $("#cuisine").hide();
+    $("#intolerance-reveal").click(function() {
+        $("#intolerance").toggle(500);
 	})
-	$("#cuisine-reveal").click(function() {
-		$("#cuisine").toggle(500);
+    $("#cuisine-reveal").click(function() {
+        $("#cuisine").toggle(500);
 	})
 	pageNumber = 1;
-	for (var i = 0; i < 4; i++) {
+	for (i = 0; i < 4; i++) {
 		checkPreviousSearchList(localStorage.key(i))
 	}
 }
@@ -42,7 +42,7 @@ function callPreviousSearchResult(id) {
 // Remove grammar from
 function replaceCommasSpaces(string) {
 	replaced = string.replace(/,/g, '%2C').replace(/ /g, '%20');
-	return replaced
+	return replaced;
 }
 
 // Iterate over selected checkboxes
@@ -151,12 +151,12 @@ function executeSearch(cb) {
 			onclick="prevPage(pageNumber)">Previous</button>`);
 			$("#search-prev").hide();
 			console.log("HIDE PREV");
-			$("#results-area").append(`<button type="submit" id="reset-search" class="btn btn-secondary btn-lg"
-			onclick="resetSearch()">Reset search</button>`)
+			$("#results-area").append(`<div class="row" id="reset-search"><div class="col d-flex justify-content-center"><button type="submit" id="reset-search" class="btn btn-secondary btn-lg"
+			onclick="resetSearch()">Reset search</button></div></div>`)
 		} else {
 			console.log("NO PAGINATION")
-			$("#results-area").append(`<button type="submit" id="reset-search" class="btn btn-secondary btn-lg"
-			onclick="resetSearch()">Reset search</button>`)
+			$("#results-area").append(`<div class="row" id="reset-search"><div class="col d-flex justify-content-center"><button type="submit" id="reset-search" class="btn btn-secondary btn-lg"
+			onclick="resetSearch()">Reset search</button></div></div>`)
 		}
 
 		// save search list to localstorage 

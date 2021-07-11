@@ -84,3 +84,11 @@ body {
 .fa-chevron-right {
     margin: 10%;
 }
+
+#search-next {
+    float: right;
+}
+
+#search-prev {
+    float: left;
+}
