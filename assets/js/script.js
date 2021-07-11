@@ -177,22 +177,31 @@ function generateSummary(response) {
 	$("#query-placeholder").replaceWith(`<table class="table table-dark table-hover" id="results-table"><thead></thead id="results-table-head"><tbody id="results-table-body"></tbody></table>`);
 	// generate info in a div
 	$("#results-table").replaceWith(`<div id="recipe-summary"></div>`);
+
+	$("#recipe-summary").append(`<div id="allergen-row"></div>`);
+	$("#recipe-summary").append(`<div id="meal-row"></div>`);
+
 	if (response.vegetarian === true) {
 		console.log("VEG " + response.vegetarian)
-		$("#recipe-summary").append(`<div id="icon-vegetarian">V</div>`);
+		$("#allergen-row").append(`<div class="recipe-icon" id="icon-vegetarian">V</div>`);
 	}
 	if (response.vegan === true) {
 		console.log("VEGAN " + response.vegan)
-		$("#recipe-summary").append(`<div id="icon-vegan">VG</div>`);
+		$("#allergen-row").append(`<div class="recipe-icon" id="icon-vegan">VG</div>`);
 	}
 	if (response.glutenFree === true) {
 		console.log("GF " + response.glutenFree)
-		$("#recipe-summary").append(`<div id="icon-gluten-free">GF</div>`);
+		$("#allergen-row").append(`<div class="recipe-icon" id="icon-gluten-free">GF</div>`);
 	}
 	if (response.dairyFree === true) {
 		console.log("DF " + response.vegetarian)
-		$("#recipe-summary").append(`<div id="icon-dairy-free">DF</div>`);
+		$("#allergen-row").append(`<div class="recipe-icon" id="icon-dairy-free">DF</div>`);
 	}
+
+	$.each(response.dishTypes, function (index, recipe) {
+		$("#meal-row").append(`<div class="recipe-icon" id="dish-types">${recipe}</div>`);
+		})
+
 	if (response.analyzedInstructions[0] !== undefined) {
 		stepsArray = response.analyzedInstructions[0].steps;
 		console.log(stepsArray[0].step)
@@ -218,7 +227,6 @@ function generateSummary(response) {
 	$("#recipe-summary").append(`<div id="servings">Servings: ${response.servings}</div>`);
 	$("#recipe-summary").append(`<div id="source-url">URL: ${response.sourceUrl}</div>`);
 	$("#recipe-summary").append(`<div id="recipe-image">Image: <img src="${response.image}"/></div>`);
-	$("#recipe-summary").append(`<div id="dish-types">Dish types: ${response.dishTypes}</div>`);
 	$("#recipe-summary").append(`<a href="${response.sourceUrl}" target="_blank"><button id="recipe-button" class="btn btn-secondary btn-lg">View source website</button></a>`)
 
 	//store result as string in localstorage
