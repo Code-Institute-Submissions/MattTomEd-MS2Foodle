@@ -239,7 +239,7 @@ function generateSummary(response) {
 	pageNumber = sessionStorage.getItem("pageNumber")
 	pageNumber = parseInt(pageNumber)
 
-	if (sessionStorage.getItem("recipeArray") !== null) {
+	if (Boolean($("#search-next").length) === true) {
 	$("#recipe-summary").append(`<button id="back-to-search" onclick="displayData(pageNumber)" class="btn btn-secondary btn-lg">Go back</button></a>`)
 	} else {
 	$("#recipe-summary").append(`<button id="back-to-search" onclick="resetSearch()" class="btn btn-secondary btn-lg">Close</button></a>`)
@@ -247,6 +247,7 @@ function generateSummary(response) {
 }
 
 function displayData(page) {
+	
 	// remove existing search and summary data
 	removeSearchData();
 	// Get first batch of results
