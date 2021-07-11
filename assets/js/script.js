@@ -98,8 +98,6 @@ function displayFoodSummary(id) {
 
 	// If request is successful, display summary
 	$.ajax(settings).done(function (response) {
-		console.log(response);
-		console.log("Button has been clicked for ID number " + id);
 		generateSummary(response);
 	});
 }
@@ -182,7 +180,9 @@ function executeSearch(cb) {
 
 // generate recipe summary
 function generateSummary(response) {
-
+	//hide next and prev buttons
+	$("#search-next").hide();
+	$("#search-prev").hide();
 	//store result as string in localstorage
 	localStorage.setItem(JSON.stringify(response.id), JSON.stringify(response))
 	checkPreviousSearchList(JSON.stringify(response.id));
@@ -263,6 +263,9 @@ function displayData(page) {
 
 	// remove existing search and summary data
 	removeSearchData();
+	//reveal next and previous buttons if not shown already
+	$("#search-next").show();
+	$("#search-prev").show();
 	// Get first batch of results
 	displayArray = _.nth(recipeArray, page - 1);
 	console.log(displayArray);
