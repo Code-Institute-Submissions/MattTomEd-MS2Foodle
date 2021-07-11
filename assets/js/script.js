@@ -4,11 +4,16 @@ function readyDocument() {
 	console.log("Ready");
 	$("#intolerance").hide();
 	$("#cuisine").hide();
+	$("#contact-form").hide();
 	$("#intolerance-reveal").click(function () {
 		$("#intolerance").toggle(500);
 	})
 	$("#cuisine-reveal").click(function () {
 		$("#cuisine").toggle(500);
+	})
+	$("#contact-reveal").click(function() {
+		$("#contact-form").toggle(500);
+		$("#contact-reveal").hide();
 	})
 	pageNumber = 1;
 	for (i = 0; i < 5; i++) {
