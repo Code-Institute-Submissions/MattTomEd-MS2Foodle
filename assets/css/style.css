@@ -1,6 +1,7 @@
+/* FONTS */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
-
+/* BACKGROUND IMAGE */
 body {
     background: url('../images/backgroundimage.jpg'); 
     background-repeat: no-repeat;
@@ -11,12 +12,53 @@ body {
     color: #ffffff;
 };
 
+/* TEXT COLORS AND STYLING */
 .white-text-color {
     color: #ffffff!important;
 }
 
 .black-text-color {
     color: #000000!important;
+}
+
+.subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.subtitle-light {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    color: #ffffff;
+    list-style-type: none;
+}
+
+.recipe-title-text {
+    font-size: 4em;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+#list-steps > li {
+    margin: 20px 0;
+}
+
+#previous-search-area > ul {
+    margin: 0 auto;
+}
+
+#previous-search-area > li {
+    margin: 20px 0;
+}
+
+#list-recipe {
+    margin: 20px;
+}
+
+#list-recipe > li {
+    margin: 20px 0;
 }
 
 .table {
@@ -26,6 +68,8 @@ body {
 .table-primary {
     color: #ffffff!important;
 }
+
+/* BUTTON, ICON AND TABLE STYLING */
 
 .btn-danger {
     margin: 5px 5px;
@@ -72,59 +116,10 @@ body {
     margin: 0 auto;
 }
 
-.subtitle {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    color: #ffffff;
-}
-
-.subtitle-light {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    color: #ffffff;
-    list-style-type: none;
-}
-
-.recipe-title-text {
-    font-size: 4em;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    color: #ffffff;
-}
-
-#list-steps > li {
-    margin: 20px 0;
-}
-
-#list-recipe {
-    margin: 20px;
-}
-
-#list-recipe > li {
-    margin: 20px 0;
-}
-
 #previous-search-area {
     list-style-type: none;
     margin: 0 auto;
     padding: 0;
-}
-
-#previous-search-area > ul {
-    margin: 0 auto;
-}
-
-#previous-search-area > li {
-    margin: 20px 0;
-}
-
-#previous-search-area a:hover {
-    color: rgb(168, 168, 255);
-    cursor: pointer;
-}
-
-.reveal:hover {
-    cursor: pointer;
 }
 
 .fa-chevron-right {
@@ -141,7 +136,6 @@ body {
 }
 
 .recipe-icon {
-
     background-color: black;
     display: inline-block;
     text-align: center;
@@ -167,6 +161,19 @@ body {
 #icon-dairy-free {
     background-color: #1b5766;
 }
+
+/* HOVER EFFECTS */
+
+#previous-search-area a:hover {
+    color: rgb(168, 168, 255);
+    cursor: pointer;
+}
+
+.reveal:hover {
+    cursor: pointer;
+}
+
+/* MEDIA QUERIES */
 
 @media screen and (max-width: 600px) {
     .recipe-title-text {
