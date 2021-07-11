@@ -21,7 +21,7 @@ function checkPreviousSearchList(keyNumber) {
 	if (result != null) {
 		result = JSON.parse(result);
 		$("#previous-search-area").prepend(
-			`<li id="${result.id}" class="text-center justify-content-center"><a class="subtitle-light" onclick="callPreviousSearchResult(${result.id})">${result.title}</a></li>`
+			`<li id="${result.id}" class="text-center justify-content-center"><a class="subtitle-light" onclick="callPreviousSearchResult(${result.id})">${result.title}</a></li><div class="row py-1"></div>`
 		)
 		if ($('#previous-search-area li').length > 5) {
 			keyToRemove = $('#previous-search-area li').last().attr("id");
@@ -181,9 +181,11 @@ function generateSummary(response) {
 	// generate info in a div
 	$("#results-table").replaceWith(`<div id="recipe-summary"></div>`);
 	$("#recipe-summary").append('<div class="row" id="title-row">');
-	$("#title-row").append(`<div><h2 id="recipe-title-text" class="text-center justify-content-center">${response.title}</h2><h4 class="subtitle-light text-center justify-content-center">A recipe from ${response.sourceName}</h3></div><div class="row py-3"></div>`);
+	$("#title-row").append(`<div><h2 class="recipe-title-text text-center justify-content-center">${response.title}</h2><h4 class="subtitle-light text-center justify-content-center">A recipe from ${response.sourceName}</h3></div><div class="row py-3"></div>`);
+	$("#title-row").append(`<div><h5 class="subtitle-light">Takes ${convertTime(response.readyInMinutes)} to cook</h5></div>`);
+	$("#title-row").append(`<div><h5 class="subtitle-light">Makes ${response.servings} servings</h5></div>`);
 	$("#recipe-summary").append(`<div id="allergen-row"></div>`);
-	$("#recipe-summary").append(`<div id="meal-row"><div class="row py-3"></div></div>`);
+	$("#recipe-summary").append(`<div id="meal-row"></div>`);
 
 	if (response.vegetarian === true) {
 		$("#allergen-row").append(`<div class="recipe-icon" id="icon-vegetarian">Vegetarian</div>`);
@@ -201,13 +203,15 @@ function generateSummary(response) {
 	$.each(response.dishTypes, function (index, recipe) {
 		$("#meal-row").append(`<div class="recipe-icon" id="dish-types">${recipe}</div>`);
 	})
-	console.log(typeof (response.image))
+	
+	$("#recipe-summary").append('<div class="row justify-content-centre" id="image-row"></div><div class="row py-3"></div>');
+
 	if (response.image != undefined) {
-		$("#recipe-summary").append(`<div class="row py-3"></div><div class="justify-content-centre"><img id="recipe-image" class="img-fluid" src="${response.image}"/></div><div class="row py-3"></div>`);
+		$("#image-row").append(`<div class="col-6"><img id="recipe-image" class="img-fluid" src="${response.image}"/></div>`);
 	} else {
-		$("#recipe-summary").append(`<div class="row py-3"></div><div class="justify-content-centre"><h2>No image found</h2></div><div class="row py-3"></div>`);
+		$("#image-row").append(`<div class="col-6"><br/><br/><h2>No image found</h2></div>`);
 	}
-	$("#recipe-summary").append(`<ul id="list-recipe" class="subtitle-light"><h2 class="subtitle text-center justify-content-center">Ingredients</h2></ul>`);
+	$("#image-row").append(`<ul id="list-recipe" class="subtitle-light col-6 text-center"><h2 class="subtitle text-center">Ingredients</h2></ul>`);
 	ingredientsArray = response.extendedIngredients
 	$.each(ingredientsArray, function () {
 		$("#list-recipe").append($('<li>').text(`${this.original}`));
@@ -215,19 +219,18 @@ function generateSummary(response) {
 
 	if (response.analyzedInstructions[0] !== undefined) {
 		stepsArray = response.analyzedInstructions[0].steps;
-		$("#recipe-summary").append(`<ul id="list-steps" class="subtitle-light"><h2 class="subtitle text-center justify-content-center">What to do</h2></ul>`);
+		$("#recipe-summary").append(`<ul id="list-steps" class="subtitle-light"><h2 class="subtitle text-center justify-content-center">What to do</h2></ul><div class="row py-3"></div>`);
 
 		$.each(stepsArray, function () {
 			$("#list-steps").append($('<li>').text(`${this.number}: ${this.step}`));
 		})
 	} else {
-		$("#recipe-summary").append(`<ul id="list-steps">No recipe steps found - visit website for more information</ul>`);
+		$("#recipe-summary").append(`<ul id="list-steps">No recipe steps found - visit website for more information</ul><div class="row py-3"></div>`);
 	}
 
+	$("#recipe-summary").append('<div class="row justify-content-center" id="button-row"></div>')
 
-	$("#recipe-summary").append(`<div id="prep-time">Minutes: ${convertTime(response.readyInMinutes)}</div>`);
-	$("#recipe-summary").append(`<div id="servings">Servings: ${response.servings}</div>`);
-	$("#recipe-summary").append(`<a href="${response.sourceUrl}" target="_blank"><button id="recipe-button" class="btn btn-secondary btn-lg">View source website</button></a>`)
+	$("#button-row").append(`<div class="col-6 text-center"><a href="${response.sourceUrl}" target="_blank"><button id="recipe-button" class="btn btn-secondary btn-lg">View source website</button></a></div>`)
 
 	// create back button for search, return last known page number
 	recipeArray = sessionStorage.getItem("recipeArray")
@@ -236,10 +239,11 @@ function generateSummary(response) {
 	pageNumber = parseInt(pageNumber)
 
 	if (Boolean($("#search-next").length) === true) {
-		$("#recipe-summary").append(`<button id="back-to-search" onclick="displayData(pageNumber)" class="btn btn-secondary btn-lg">Go back</button></a>`)
+		$("#button-row").append(`<div class="col-6 text-center"><button id="back-to-search" onclick="displayData(pageNumber)" class="btn btn-secondary btn-lg">Go back</button></a></div>`)
 	} else {
-		$("#recipe-summary").append(`<button id="back-to-search" onclick="resetSearch()" class="btn btn-secondary btn-lg">Close</button></a>`)
+		$("#button-row").append(`<div class="col-6 text-center"><button id="back-to-search" onclick="resetSearch()" class="btn btn-secondary btn-lg">Close</button></a></div>`)
 	}
+	$("#button-row").append(`<div class="row py-3"></div>`)
 }
 
 function displayData(page) {
