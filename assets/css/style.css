@@ -92,8 +92,20 @@ body {
     color: #ffffff;
 }
 
+#list-steps > li {
+    margin: 20px 0;
+}
+
+#list-recipe > li {
+    margin: 20px 0;
+}
+
 #previous-search-area {
     list-style-type: none;
+}
+
+#previous-search-area > li {
+    margin: 20px 0;
 }
 
 #previous-search-area a:hover {
