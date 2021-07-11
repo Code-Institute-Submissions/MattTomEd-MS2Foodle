@@ -11,7 +11,7 @@ function readyDocument() {
         $("#cuisine").toggle(500);
 	})
 	pageNumber = 1;
-	for (i = 0; i < 4; i++) {
+	for (i = 0; i < 5; ++i) {
 		checkPreviousSearchList(localStorage.key(i))
 	}
 }
@@ -170,6 +170,9 @@ function executeSearch(cb) {
 // generate recipe summary
 function generateSummary(response) {
 
+	//store result as string in localstorage
+	localStorage.setItem(JSON.stringify(response.id), JSON.stringify(response))
+	checkPreviousSearchList(JSON.stringify(response.id));
 	// store page number to session storage
 	sessionStorage.setItem("pageNumber", JSON.stringify(pageNumber));
 	// remove existing data and placeholder if user manually enters URL (if bookmarked)
@@ -228,10 +231,6 @@ function generateSummary(response) {
 	$("#recipe-summary").append(`<div id="source-url">URL: ${response.sourceUrl}</div>`);
 	$("#recipe-summary").append(`<div id="recipe-image">Image: <img src="${response.image}"/></div>`);
 	$("#recipe-summary").append(`<a href="${response.sourceUrl}" target="_blank"><button id="recipe-button" class="btn btn-secondary btn-lg">View source website</button></a>`)
-
-	//store result as string in localstorage
-	localStorage.setItem(JSON.stringify(response.id), JSON.stringify(response))
-	checkPreviousSearchList(JSON.stringify(response.id));
 
 	// create back button for search, return last known page number
 	recipeArray = sessionStorage.getItem("recipeArray")

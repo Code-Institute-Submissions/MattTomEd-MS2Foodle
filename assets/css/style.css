@@ -83,6 +83,7 @@ body {
 
 .fa-chevron-right {
     margin: 10%;
+    font-size: 2em;
 }
 
 #search-next {
@@ -101,4 +102,9 @@ body {
     padding: 10px 12px 10px 12px;
     margin: 10px;
     border-radius: 25px;
+    font-weight: 700;
+}
+
+#icon-vegetarian {
+    background-color: #197e50;
 }
