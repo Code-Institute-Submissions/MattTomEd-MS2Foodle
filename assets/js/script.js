@@ -11,7 +11,7 @@ function readyDocument() {
         $("#cuisine").toggle(500);
 	})
 	pageNumber = 1;
-	for (i = 0; i < 5; ++i) {
+	for (i = 0; i < 5; i++) {
 		checkPreviousSearchList(localStorage.key(i))
 	}
 }
@@ -151,11 +151,11 @@ function executeSearch(cb) {
 			onclick="prevPage(pageNumber)">Previous</button>`);
 			$("#search-prev").hide();
 			console.log("HIDE PREV");
-			$("#results-area").append(`<div class="row" id="reset-search"><div class="col d-flex justify-content-center"><button type="submit" id="reset-search" class="btn btn-secondary btn-lg"
+			$("#results-area").append(`<div class="row" id="reset-search"><div class="col d-flex justify-content-center"><button type="submit" id="reset-search" class="btn btn-secondary btn-lg subtitle"
 			onclick="resetSearch()">Reset search</button></div></div>`)
 		} else {
 			console.log("NO PAGINATION")
-			$("#results-area").append(`<div class="row" id="reset-search"><div class="col d-flex justify-content-center"><button type="submit" id="reset-search" class="btn btn-secondary btn-lg"
+			$("#results-area").append(`<div class="row" id="reset-search"><div class="col d-flex justify-content-center"><button type="submit" id="reset-search" class="btn btn-secondary btn-lg subtitle"
 			onclick="resetSearch()">Reset search</button></div></div>`)
 		}
 
@@ -180,25 +180,26 @@ function generateSummary(response) {
 	$("#query-placeholder").replaceWith(`<table class="table table-dark table-hover" id="results-table"><thead></thead id="results-table-head"><tbody id="results-table-body"></tbody></table>`);
 	// generate info in a div
 	$("#results-table").replaceWith(`<div id="recipe-summary"></div>`);
-
+	$("#recipe-summary").append('<div class="row" id="title-row">');
+	$("#title-row").append(`<div><h2 id="recipe-title-text" class="text-center justify-content-center">${response.title}</h2></div>`);
 	$("#recipe-summary").append(`<div id="allergen-row"></div>`);
 	$("#recipe-summary").append(`<div id="meal-row"></div>`);
 
 	if (response.vegetarian === true) {
 		console.log("VEG " + response.vegetarian)
-		$("#allergen-row").append(`<div class="recipe-icon" id="icon-vegetarian">V</div>`);
+		$("#allergen-row").append(`<div class="recipe-icon" id="icon-vegetarian">Vegetarian</div>`);
 	}
 	if (response.vegan === true) {
 		console.log("VEGAN " + response.vegan)
-		$("#allergen-row").append(`<div class="recipe-icon" id="icon-vegan">VG</div>`);
+		$("#allergen-row").append(`<div class="recipe-icon" id="icon-vegan">Vegan</div>`);
 	}
 	if (response.glutenFree === true) {
 		console.log("GF " + response.glutenFree)
-		$("#allergen-row").append(`<div class="recipe-icon" id="icon-gluten-free">GF</div>`);
+		$("#allergen-row").append(`<div class="recipe-icon" id="icon-gluten-free">Gluten free</div>`);
 	}
 	if (response.dairyFree === true) {
 		console.log("DF " + response.vegetarian)
-		$("#allergen-row").append(`<div class="recipe-icon" id="icon-dairy-free">DF</div>`);
+		$("#allergen-row").append(`<div class="recipe-icon" id="icon-dairy-free">Dairy free</div>`);
 	}
 
 	$.each(response.dishTypes, function (index, recipe) {
@@ -209,7 +210,7 @@ function generateSummary(response) {
 		stepsArray = response.analyzedInstructions[0].steps;
 		console.log(stepsArray[0].step)
 		console.log(typeof (stepsArray.length))
-		$("#recipe-summary").append(`<ul id="list-steps">What to do</ul>`);
+		$("#recipe-summary").append(`<ul id="list-steps" class="subtitle-light"><h2 class="subtitle text-center justify-content-center">What to do</h2></ul>`);
 
 		$.each(stepsArray, function () {
 			$("#list-steps").append($('<li>').text(`${this.number}: ${this.step}`));
@@ -218,14 +219,13 @@ function generateSummary(response) {
 		$("#recipe-summary").append(`<ul id="list-steps">No recipe steps found - visit website for more information</ul>`);
 	}
 
-	$("#recipe-summary").append(`<ul id="list-recipe"></ul>`);
+	$("#recipe-summary").append(`<ul id="list-recipe" class="subtitle-light"><h2 class="subtitle text-center justify-content-center">Ingredients</h2></ul>`);
 	ingredientsArray = response.extendedIngredients
 	$.each(ingredientsArray, function () {
 		$("#list-recipe").append($('<li>').text(`${this.original}`));
 	})
 
 	$("#recipe-summary").append(`<div id="source-name">Source name: ${response.sourceName}</div>`);
-	$("#recipe-summary").append(`<div id="recipe-title">Title: ${response.title}</div>`);
 	$("#recipe-summary").append(`<div id="prep-time">Minutes: ${convertTime(response.readyInMinutes)}</div>`);
 	$("#recipe-summary").append(`<div id="servings">Servings: ${response.servings}</div>`);
 	$("#recipe-summary").append(`<div id="source-url">URL: ${response.sourceUrl}</div>`);

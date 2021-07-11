@@ -6,6 +6,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    background-blend-mode: darken;
     background-position: center;
     color: #ffffff;
 };
@@ -66,6 +67,14 @@ body {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     color: #ffffff;
+    list-style-type: none;
+}
+
+#recipe-title-text {
+    font-size: 4em;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #ffffff;
 }
 
 #previous-search-area {
@@ -103,8 +112,21 @@ body {
     margin: 10px;
     border-radius: 25px;
     font-weight: 700;
+    border: 3px solid #ffffff;
 }
 
 #icon-vegetarian {
-    background-color: #197e50;
+    background-color: #125738;
+}
+
+#icon-gluten-free {
+    background-color: #aa882c;
+}
+
+#icon-vegan {
+    background-color: #798f6a;
+}
+
+#icon-dairy-free {
+    background-color: #1b5766;
 }
