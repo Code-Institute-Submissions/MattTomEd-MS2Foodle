@@ -1,14 +1,14 @@
 $(document).ready(readyDocument);
 
 function readyDocument() {
-    console.log("Ready");
-    $("#intolerance").hide();
-    $("#cuisine").hide();
-    $("#intolerance-reveal").click(function() {
-        $("#intolerance").toggle(500);
+	console.log("Ready");
+	$("#intolerance").hide();
+	$("#cuisine").hide();
+	$("#intolerance-reveal").click(function () {
+		$("#intolerance").toggle(500);
 	})
-    $("#cuisine-reveal").click(function() {
-        $("#cuisine").toggle(500);
+	$("#cuisine-reveal").click(function () {
+		$("#cuisine").toggle(500);
 	})
 	pageNumber = 1;
 	for (i = 0; i < 5; i++) {
@@ -181,35 +181,40 @@ function generateSummary(response) {
 	// generate info in a div
 	$("#results-table").replaceWith(`<div id="recipe-summary"></div>`);
 	$("#recipe-summary").append('<div class="row" id="title-row">');
-	$("#title-row").append(`<div><h2 id="recipe-title-text" class="text-center justify-content-center">${response.title}</h2></div>`);
+	$("#title-row").append(`<div><h2 id="recipe-title-text" class="text-center justify-content-center">${response.title}</h2><h4 class="subtitle-light text-center justify-content-center">A recipe from ${response.sourceName}</h3></div><div class="row py-3"></div>`);
 	$("#recipe-summary").append(`<div id="allergen-row"></div>`);
-	$("#recipe-summary").append(`<div id="meal-row"></div>`);
+	$("#recipe-summary").append(`<div id="meal-row"><div class="row py-3"></div></div>`);
 
 	if (response.vegetarian === true) {
-		console.log("VEG " + response.vegetarian)
 		$("#allergen-row").append(`<div class="recipe-icon" id="icon-vegetarian">Vegetarian</div>`);
 	}
 	if (response.vegan === true) {
-		console.log("VEGAN " + response.vegan)
 		$("#allergen-row").append(`<div class="recipe-icon" id="icon-vegan">Vegan</div>`);
 	}
 	if (response.glutenFree === true) {
-		console.log("GF " + response.glutenFree)
 		$("#allergen-row").append(`<div class="recipe-icon" id="icon-gluten-free">Gluten free</div>`);
 	}
 	if (response.dairyFree === true) {
-		console.log("DF " + response.vegetarian)
 		$("#allergen-row").append(`<div class="recipe-icon" id="icon-dairy-free">Dairy free</div>`);
 	}
 
 	$.each(response.dishTypes, function (index, recipe) {
 		$("#meal-row").append(`<div class="recipe-icon" id="dish-types">${recipe}</div>`);
-		})
+	})
+	console.log(typeof (response.image))
+	if (response.image != undefined) {
+		$("#recipe-summary").append(`<div class="row py-3"></div><div class="justify-content-centre"><img id="recipe-image" class="img-fluid" src="${response.image}"/></div><div class="row py-3"></div>`);
+	} else {
+		$("#recipe-summary").append(`<div class="row py-3"></div><div class="justify-content-centre"><h2>No image found</h2></div><div class="row py-3"></div>`);
+	}
+	$("#recipe-summary").append(`<ul id="list-recipe" class="subtitle-light"><h2 class="subtitle text-center justify-content-center">Ingredients</h2></ul>`);
+	ingredientsArray = response.extendedIngredients
+	$.each(ingredientsArray, function () {
+		$("#list-recipe").append($('<li>').text(`${this.original}`));
+	})
 
 	if (response.analyzedInstructions[0] !== undefined) {
 		stepsArray = response.analyzedInstructions[0].steps;
-		console.log(stepsArray[0].step)
-		console.log(typeof (stepsArray.length))
 		$("#recipe-summary").append(`<ul id="list-steps" class="subtitle-light"><h2 class="subtitle text-center justify-content-center">What to do</h2></ul>`);
 
 		$.each(stepsArray, function () {
@@ -219,17 +224,9 @@ function generateSummary(response) {
 		$("#recipe-summary").append(`<ul id="list-steps">No recipe steps found - visit website for more information</ul>`);
 	}
 
-	$("#recipe-summary").append(`<ul id="list-recipe" class="subtitle-light"><h2 class="subtitle text-center justify-content-center">Ingredients</h2></ul>`);
-	ingredientsArray = response.extendedIngredients
-	$.each(ingredientsArray, function () {
-		$("#list-recipe").append($('<li>').text(`${this.original}`));
-	})
 
-	$("#recipe-summary").append(`<div id="source-name">Source name: ${response.sourceName}</div>`);
 	$("#recipe-summary").append(`<div id="prep-time">Minutes: ${convertTime(response.readyInMinutes)}</div>`);
 	$("#recipe-summary").append(`<div id="servings">Servings: ${response.servings}</div>`);
-	$("#recipe-summary").append(`<div id="source-url">URL: ${response.sourceUrl}</div>`);
-	$("#recipe-summary").append(`<div id="recipe-image">Image: <img src="${response.image}"/></div>`);
 	$("#recipe-summary").append(`<a href="${response.sourceUrl}" target="_blank"><button id="recipe-button" class="btn btn-secondary btn-lg">View source website</button></a>`)
 
 	// create back button for search, return last known page number
@@ -239,14 +236,14 @@ function generateSummary(response) {
 	pageNumber = parseInt(pageNumber)
 
 	if (Boolean($("#search-next").length) === true) {
-	$("#recipe-summary").append(`<button id="back-to-search" onclick="displayData(pageNumber)" class="btn btn-secondary btn-lg">Go back</button></a>`)
+		$("#recipe-summary").append(`<button id="back-to-search" onclick="displayData(pageNumber)" class="btn btn-secondary btn-lg">Go back</button></a>`)
 	} else {
-	$("#recipe-summary").append(`<button id="back-to-search" onclick="resetSearch()" class="btn btn-secondary btn-lg">Close</button></a>`)
+		$("#recipe-summary").append(`<button id="back-to-search" onclick="resetSearch()" class="btn btn-secondary btn-lg">Close</button></a>`)
 	}
 }
 
 function displayData(page) {
-	
+
 	// remove existing search and summary data
 	removeSearchData();
 	// Get first batch of results
@@ -353,4 +350,3 @@ function decrementPage(pageNumber) {
 	--pageNumber;
 	return pageNumber;
 }
-
