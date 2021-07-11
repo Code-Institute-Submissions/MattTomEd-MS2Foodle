@@ -11,7 +11,7 @@ function readyDocument() {
 	$("#cuisine-reveal").click(function () {
 		$("#cuisine").toggle(500);
 	})
-	$("#contact-reveal").click(function() {
+	$("#contact-reveal").click(function () {
 		$("#contact-form").toggle(500);
 		$("#contact-reveal").hide();
 	})
@@ -144,29 +144,37 @@ function executeSearch(cb) {
 		$("#search-prev").remove();
 		$("#reset-search").remove();
 
-		// display data
-		displayData(pageNumber);
-
-		// Create pagination if needed
-		if (maxPages > 1) {
-			$("#results-area").append(`<button type="submit" id="search-next" class="btn btn-secondary btn-lg"
-			onclick="nextPage(pageNumber)">Next</button>`)
-			console.log("SHOW NEXT");
-			$("#results-area").append(`<button type="submit" id="search-prev" class="btn btn-secondary btn-lg"
-			onclick="prevPage(pageNumber)">Previous</button>`);
-			$("#search-prev").hide();
-			console.log("HIDE PREV");
+		if (recipeArray.length === 0) {
+			$("#results-area").append(`<h2 id="no-results" class="text-center previous-search-container">Sorry, we couldn't find any recipes!</h2>`)
 			$("#results-area").append(`<div class="row" id="reset-search"><div class="col d-flex justify-content-center"><button type="submit" id="reset-search" class="btn btn-secondary btn-lg subtitle"
 			onclick="resetSearch()">Reset search</button></div></div>`)
 		} else {
-			console.log("NO PAGINATION")
-			$("#results-area").append(`<div class="row" id="reset-search"><div class="col d-flex justify-content-center"><button type="submit" id="reset-search" class="btn btn-secondary btn-lg subtitle"
-			onclick="resetSearch()">Reset search</button></div></div>`)
-		}
 
-		// save search list to localstorage 
-		sessionStorage.setItem("recipeArray", JSON.stringify(recipeArray))
+			// display data
+			displayData(pageNumber);
+
+			// Create pagination if needed
+			if (maxPages > 1) {
+				$("#results-area").append(`<button type="submit" id="search-next" class="btn btn-secondary btn-lg"
+			onclick="nextPage(pageNumber)">Next</button>`)
+				console.log("SHOW NEXT");
+				$("#results-area").append(`<button type="submit" id="search-prev" class="btn btn-secondary btn-lg"
+			onclick="prevPage(pageNumber)">Previous</button>`);
+				$("#search-prev").hide();
+				console.log("HIDE PREV");
+				$("#results-area").append(`<div class="row" id="reset-search"><div class="col d-flex justify-content-center"><button type="submit" id="reset-search" class="btn btn-secondary btn-lg subtitle"
+			onclick="resetSearch()">Reset search</button></div></div>`)
+			} else {
+				console.log("NO PAGINATION")
+				$("#results-area").append(`<div class="row" id="reset-search"><div class="col d-flex justify-content-center"><button type="submit" id="reset-search" class="btn btn-secondary btn-lg subtitle"
+			onclick="resetSearch()">Reset search</button></div></div>`)
+			}
+
+			// save search list to localstorage 
+			sessionStorage.setItem("recipeArray", JSON.stringify(recipeArray))
+		}
 	});
+
 
 	return false;
 
@@ -208,7 +216,7 @@ function generateSummary(response) {
 	$.each(response.dishTypes, function (index, recipe) {
 		$("#meal-row").append(`<div class="recipe-icon" id="dish-types">${recipe}</div>`);
 	})
-	
+
 	$("#recipe-summary").append('<div class="row justify-content-centre" id="image-row"></div><div class="row py-3"></div>');
 
 	if (response.image != undefined) {
@@ -263,6 +271,7 @@ function displayData(page) {
 }
 
 function printData(array) {
+
 	$("#results-table-head").append(
 		$('<tr><th scope="col">Recipe</th><th scope="col">Preparation time</th><th scope="col">Servings</th><th scope="col"></th></tr>')
 	)
@@ -308,10 +317,11 @@ function removeSearchData() {
 // reset search to starting state
 function resetSearch() {
 	removeSearchData();
-	$("#results-table").replaceWith('<div id="query-placeholder" class="white-text-color"><p>RESULTS GO HERE</p></div>');
+	$("#results-table").replaceWith('<div id="query-placeholder" class="white-text-color"></div>');
 	$("#search-next").remove();
 	$("#search-prev").remove();
 	$("#reset-search").remove();
+	$("#no-results").remove();
 }
 
 function nextPage(page) {
