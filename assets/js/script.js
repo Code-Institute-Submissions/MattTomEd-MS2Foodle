@@ -68,7 +68,7 @@ function compileUrl() {
 	let query = replaceCommasSpaces($("#query-include").val());
 	let excludeIngredients = replaceCommasSpaces($("#query-exclude").val());
 	let type = replaceCommasSpaces($("#dish-type").val());
-	// number of results set to 50 to allow for API call budget
+	// number of results throttled to 50 to allow for API call budget
 	let url = `search?query=${query}&diet=${diet}&excludeIngredients=${excludeIngredients}&intolerances=${intolerances}&number=50&offset=0&type=${type}&cuisine=${cuisine}`;
 	return url;
 }
