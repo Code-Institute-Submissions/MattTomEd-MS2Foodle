@@ -293,6 +293,9 @@ function printData(array) {
 		console.log("ID is " + foodIdString)
 		prepTime = this.readyInMinutes;
 		convertTime(prepTime);
+		if (this.title.length > 40) {
+			this.title = this.title.substring(0,40) + "..."
+		}
 		$("#results-table-body").append(
 			$('<tr>').append(
 				$('<td>').text(this.title),
