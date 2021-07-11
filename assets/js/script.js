@@ -190,13 +190,21 @@ function generateSummary(response) {
 	sessionStorage.setItem("pageNumber", JSON.stringify(pageNumber));
 	// remove existing data and placeholder if user manually enters URL (if bookmarked)
 	$("#recipe-summary").replaceWith(`<table class="table table-dark table-hover" id="results-table"><thead id="results-table-head"></thead><tbody id="results-table-body"></tbody></table>`);
-	$("#query-placeholder").replaceWith(`<table class="table table-dark table-hover" id="results-table"><thead></thead id="results-table-head"><tbody id="results-table-body"></tbody></table>`);
+	$("#query-placeholder").replaceWith(`<table class="table table-dark table-hover" id="results-table"><theadid="results-table-head"></thead><tbody id="results-table-body"></tbody></table>`);
 	// generate info in a div
 	$("#results-table").replaceWith(`<div id="recipe-summary"></div>`);
 	$("#recipe-summary").append('<div class="row" id="title-row">');
 	$("#title-row").append(`<div><h2 class="recipe-title-text text-center justify-content-center">${response.title}</h2><h4 class="subtitle-light text-center justify-content-center">A recipe from ${response.sourceName}</h3></div><div class="row py-3"></div>`);
-	$("#title-row").append(`<div><h5 class="subtitle-light">Takes ${convertTime(response.readyInMinutes)} to cook</h5></div>`);
-	$("#title-row").append(`<div><h5 class="subtitle-light">Makes ${response.servings} servings</h5></div>`);
+	if (response.readyInMinutes != undefined) {
+		$("#title-row").append(`<div><h5 class="subtitle-light">Takes ${convertTime(response.readyInMinutes)} to cook</h5></div>`);
+	} else {
+		$("#title-row").append(`<div><h5 class="subtitle-light">Unknown preparation time</h5></div>`);
+	}
+	if (response.servings != undefined) {
+		$("#title-row").append(`<div><h5 class="subtitle-light">Makes ${response.servings} servings</h5></div>`);
+	} else {
+		$("#title-row").append(`<div><h5 class="subtitle-light">Unknown number of servings</h5></div>`);
+	}
 	$("#recipe-summary").append(`<div id="allergen-row"></div>`);
 	$("#recipe-summary").append(`<div id="meal-row"></div>`);
 
@@ -303,7 +311,9 @@ function convertTime(time) {
 		return minutes + " minutes";
 	} else if (minutes === 0 && hours === 1) {
 		return hours + " hour"
-	} else if (minutes === 0 && hours > 1) {
+	} else if (minutes >= 1 && hours === 1) {
+		return hours + " hour " + minutes + " minutes"
+	}else if (minutes === 0 && hours > 1) {
 		return hours + " hours";
 	} else if (hours > 1 && minutes >= 1) {
 		return hours + " hours " + minutes + " minutes"
