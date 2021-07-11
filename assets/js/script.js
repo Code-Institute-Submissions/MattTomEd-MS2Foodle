@@ -168,9 +168,9 @@ function generateSummary(response) {
 	getRecipeInfo(response)
 	// check if the button should reset the search or return to the current query by checking for the existence of pagination
 	if (Boolean($("#search-next").length) === true) {
-		$("#button-row").append(`<div class="col-6 text-center"><button id="back-to-search" onclick="displayData(pageNumber)" class="btn btn-secondary btn-lg">Go back</button></a></div>`)
+		$("#button-row").append(`<div class="col-6 text-end"><button id="back-to-search" onclick="displayData(pageNumber)" class="btn btn-secondary btn-lg">Go back</button></a></div>`)
 	} else {
-		$("#button-row").append(`<div class="col-6 text-center"><button id="back-to-search" onclick="resetSearch()" class="btn btn-secondary btn-lg">Close</button></a></div>`)
+		$("#button-row").append(`<div class="col-6 text-end"><button id="back-to-search" onclick="resetSearch()" class="btn btn-secondary btn-lg">Close</button></a></div>`)
 	}
 	$("#button-row").append(`<div class="row py-3"></div>`)
 }
@@ -213,12 +213,12 @@ function getRecipeInfo (response) {
 	// Logic to check if an image has been provided
 	$("#recipe-summary").append('<div class="row justify-content-centre" id="image-row"></div><div class="row py-3"></div>');
 	if (response.image != undefined) {
-		$("#image-row").append(`<div class="col-6"><img id="recipe-image" class="img-fluid" src="${response.image}"/></div>`);
+		$("#image-row").append(`<div class="col-12 col-md-6"><img id="recipe-image" class="img-fluid" src="${response.image}"/></div>`);
 	} else {
-		$("#image-row").append(`<div class="col-6"><br/><br/><h2>No image found</h2></div>`);
+		$("#image-row").append(`<div class="col-12 col-md-6"><br/><br/><h2>No image found</h2></div>`);
 	}
 	// Ingredients list
-	$("#image-row").append(`<ul id="list-recipe" class="subtitle-light col-6 text-center"><h2 class="subtitle text-center">Ingredients</h2></ul>`);
+	$("#image-row").append(`<ul id="list-recipe" class="subtitle-light col-12 col-md-6 text-center"><h2 class="subtitle text-center">Ingredients</h2></ul>`);
 	ingredientsArray = response.extendedIngredients
 	$.each(ingredientsArray, function () {
 		$("#list-recipe").append($('<li>').text(`${this.original}`));
@@ -235,7 +235,7 @@ function getRecipeInfo (response) {
 	}
 	// create buttons for going to the source website or returning to the search
 	$("#recipe-summary").append('<div class="row justify-content-center" id="button-row"></div>')
-	$("#button-row").append(`<div class="col-6 text-center"><a href="${response.sourceUrl}" target="_blank"><button id="recipe-button" class="btn btn-secondary btn-lg">View source website</button></a></div>`)
+	$("#button-row").append(`<div class="col-6 text-start"><a href="${response.sourceUrl}" target="_blank"><button id="recipe-button" class="btn btn-secondary btn-lg">View source website</button></a></div>`)
 	// create back button for search, return last known page number
 	recipeArray = sessionStorage.getItem("recipeArray")
 	recipeArray = JSON.parse(recipeArray);
@@ -257,7 +257,7 @@ function displayData(page) {
 // Print table data to the page
 function printData(array) {
 	$("#results-table-head").append(
-		$('<tr><th scope="col">Recipe</th><th scope="col">Preparation time</th><th scope="col">Servings</th><th scope="col"></th></tr>')
+		$('<tr><th scope="col">Recipe</th><th class="d-none d-md-table-cell" scope="col">Preparation time</th><th scope="col">Servings</th><th scope="col"></th></tr>')
 	)
 	$.each(array, function (index, recipe) {
 		// Create ID to use as input for displayFoodSummary()
@@ -275,7 +275,7 @@ function printData(array) {
 		$("#results-table-body").append(
 			$('<tr>').append(
 				$('<td>').text(this.title),
-				$('<td>').text(convertTime(prepTime)),
+				$('<td class="d-none d-md-table-cell">').text(convertTime(prepTime)),
 				$('<td class="justify-content-center">').text(this.servings),
 				$('<td>').append(`<button type="submit" id="display-summary" class="btn btn-secondary"
 				onclick="${foodId}">See recipe</button>`)

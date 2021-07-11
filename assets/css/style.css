@@ -96,12 +96,22 @@ body {
     margin: 20px 0;
 }
 
+#list-recipe {
+    margin: 20px;
+}
+
 #list-recipe > li {
     margin: 20px 0;
 }
 
 #previous-search-area {
     list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#previous-search-area > ul {
+    margin: 0 auto;
 }
 
 #previous-search-area > li {
@@ -157,3 +167,9 @@ body {
 #icon-dairy-free {
     background-color: #1b5766;
 }
+
+@media screen and (max-width: 600px) {
+    .recipe-title-text {
+        font-size: 2em;
+    }
+  }
