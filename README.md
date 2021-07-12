@@ -115,11 +115,11 @@ A background image of a meal is used to add style to the page. The API retrieves
 
 -   Responsive on all device sizes
 
--   Fancybox implementation to preview images at full size without affecting initial loading times
+-   Recipe summary card generation customised depending on the recipe searched
 
--   Contact form that is connected to the info dump at CI
+-   Contact form that is connected my email via EmailJS
 
--   Carousel implementation to add visual appeal and extra display of photos
+-   Table array displayed upon search submission
 
 ## Technologies Used
 
