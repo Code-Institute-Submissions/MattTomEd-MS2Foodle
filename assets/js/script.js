@@ -217,7 +217,7 @@ function getRecipeInfo(response) {
 	// Logic to check if an image has been provided
 	$("#recipe-summary").append('<div class="row justify-content-centre" id="image-row"></div><div class="row py-3"></div>');
 	if (response.image != undefined) {
-		$("#image-row").append(`<div class="col-12 col-md-6"><img id="recipe-image" class="img-fluid" src="${response.image}"/></div>`);
+		$("#image-row").append(`<div class="col-12 col-md-6"><img id="recipe-image" class="img-fluid" alt="Image of the selected recipe" src="${response.image}"/></div>`);
 	} else {
 		$("#image-row").append(`<div class="col-12 col-md-6"><br/><br/><h2>No image found</h2></div>`);
 	}
