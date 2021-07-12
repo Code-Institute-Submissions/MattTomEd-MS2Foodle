@@ -237,7 +237,6 @@ The W3C Markup Validator, W3C CSS Validator and JS Hint services were used to va
 ### Code
 
 -   [Bootstrap5](https://getbootstrap.com/): The Bootstrap library has been used for its ease in implementing mobile-first design. My custom CSS builds on this to create a website that feels more unique.
--   [Fancybox](https://fancyapps.com/fancybox/3/): The Fancybox Javascript lightbox library was recommended as an easy way to enable users to preview images in a way that does not impact performance, while maintaining responsiveness. 
 -   [EmailJS:](https://www.emailjs.com/): EmailJS has been used to provide functionality to the website's contact form I have used Bootstrap's form design to provide prompts for the user to enter required fields.
 -   [Lodash:](https://lodash.com/): Lodash was recommended as a way to make array manipulation easier. This has been used as a way to easily split the results of an array call into separate arrays, which is used as a way for users to cycle through several sets of tabled data.
 -   [jQuery:](https://jquery.com/): jQuery has been used for website responsiveness. I opted to use jQuery to make the task of adding and removing HTML elements based on logical arguments an easier task.
@@ -266,7 +265,7 @@ To make a clone, or 'fork' this repository, follow the steps below.
 1.  You will find a copy of the repository in your own Github account.
 
 ### Making a Local Clone
-How to run this project locally:
+How to run this project locally:https://github.com/MattTomEd/MS2Foodle
 
 1.  Install the GitPod Browser Extension for Chrome.
 1.  After installation, restart the browser.
