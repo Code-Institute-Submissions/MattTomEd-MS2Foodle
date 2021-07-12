@@ -5,6 +5,7 @@ function readyDocument() {
 	$("#intolerance").hide();
 	$("#cuisine").hide();
 	$("#contact-form").hide();
+	$("#results-header").hide();
 	$("#intolerance-reveal").click(function () {
 		$("#intolerance").toggle(500);
 	});
@@ -157,9 +158,10 @@ function createPagination(maxPages) {
 }
 // Generate recipe summary
 function generateSummary(response) {
-	// Hide next and prev buttons
+	// Hide next and prev buttons and results header
 	$("#search-next").hide();
 	$("#search-prev").hide();
+	$("#results-header").hide();
 	// Store result as a string in localstorage
 	localStorage.setItem(JSON.stringify(response.id), JSON.stringify(response));
 	checkPreviousSearchList(JSON.stringify(response.id));
@@ -248,6 +250,8 @@ function displayData() {
 	let recipeArray = JSON.parse(sessionStorage.getItem("recipeArray"));
 	// Remove existing search and summary data
 	removeSearchData();
+	// Reveal results header
+	$("#results-header").show();
 	// Reveal next and previous buttons if not shown already
 	$("#search-next").show();
 	$("#search-prev").show();
@@ -305,6 +309,8 @@ function removeSearchData() {
 	$("#query-placeholder").replaceWith("<table class='table table-dark table-hover' id='results-table'><thead id='results-table-head'></thead><tbody id='results-table-body'></tbody></table>");
 	$("#recipe-summary").replaceWith("<table class='table table-dark table-hover' id='results-table'><thead id='results-table-head'></thead><tbody id='results-table-body'></tbody></table>");
 	$("#results-table tr").remove();
+	// Hide results header
+	$("#results-header").hide();
 }
 // Reset search to starting state
 function resetSearch() {
@@ -314,6 +320,7 @@ function resetSearch() {
 	$("#search-prev").remove();
 	$("#reset-search").remove();
 	$("#no-results").remove();
+	$("#results-header").hide();
 }
 // Pagination for next
 function nextPage(maxPages) {
