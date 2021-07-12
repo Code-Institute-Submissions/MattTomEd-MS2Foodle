@@ -51,7 +51,9 @@ The footer provides an easy way for users to contact the developer by clicking a
 
 *   Predictability – The website must respond in a predictable manner - particularly important when users wish to select a recipe for further inspection
 
-*   Learnability – Features must be intuitive and feature single-click learning to prevent visitors becoming frustrating and clicking away
+*   Learnability – 
+
+must be intuitive and feature single-click learning to prevent visitors becoming frustrating and clicking away
 
 *   Visibility – Features must be visible, with content hinting included as appropriate
 
@@ -115,11 +117,15 @@ A background image of a meal is used to add style to the page. The API retrieves
 
 -   Responsive on all device sizes
 
--   Recipe summary card generation customised depending on the recipe searched
+-   Recipe summary card generation customised depending on the recipe searched, with links to external websites. Auto-generated recipes and icons depending on criteria found on the API data.
 
 -   Contact form that is connected my email via EmailJS
 
--   Table array displayed upon search submission
+-   Recipe saved to localStorage for users to return to upon closing and reopening a browser window
+
+-   Table array displayed upon search submission, with pagination that follows logic to disappear/reappear as appropriate
+
+
 
 ## Technologies Used
 
