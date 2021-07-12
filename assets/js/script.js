@@ -115,6 +115,9 @@ function executeSearch(cb) {
 	$.ajax(settings).done(function (response) {
 		// Break data into array chunks of 5 for pagination
 		let recipeArray = _.chunk(response.results, 5);
+		sessionStorage.setItem("recipeArray", JSON.stringify(recipeArray))
+		let pageNumber = 1;
+		sessionStorage.setItem("pageNumber", JSON.stringify(pageNumber))
 		// Max pages info for pagination
 		let maxPages = recipeArray.length;
 		// Remove previous pagination if user searches again w/o without clearing
@@ -174,7 +177,7 @@ function generateSummary(response) {
 	$("#button-row").append(`<div class="row py-3"></div>`);
 }
 // get recipe info from an API response
-function getRecipeInfo (response) {
+function getRecipeInfo(response) {
 	// Generate info in a div
 	$("#results-table").replaceWith(`<div id="recipe-summary"></div>`);
 	// Generate title and subtitle
