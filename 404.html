@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodle - Know Your Food</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/81f76c3d4f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" media="screen" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("user_Y8LGmHGwFr0TlaJMWDVr3");
+        })();
+    </script>
+</head>
+
+<body>
+    <header>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <img class="img-fluid" src="assets/images/foodle.png" alt="Website logo: Foodle" />
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <form>
+            <div class="row justify-content-center">
+                <div class="col-10">
+                    <div class="form-floating black-text-color">
+                        <input type="text" class="form-control" id="query-include" placeholder="text" value="" required>
+                        <label for="floatingInputGrid">Search a food/recipe</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row py-3"></div>
+            <div class="row justify-content-center">
+                <div class="col-10">
+                    <div class="form-floating black-text-color">
+                        <input type="text" class="form-control" id="query-exclude" placeholder="text" value="">
+                        <label for="floatingInputGrid">Enter foods to exclude</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row py-3"></div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-2 px-0 d-flex align-items-center">
+                        <p class="subtitle-light">Diet:</p>
+                    </div>
+                    <div class="col-8 justify-content-end px-0">
+                        <select class="form-select form-select" id="diet" aria-label=".form-select-lg example">
+                            <option value=" " selected>No preference</option>
+                            <option value="vegetarian">Vegetarian</option>
+                            <option value="vegan">Vegan</option>
+                            <option value="pescetarian">Pescetarian</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row py-3"></div>
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-2 justify-content-start px-0 white-text-color">
+                        <p class="subtitle-light">Meal type:</p>
+                    </div>
+                    <div class="col-8 justify-content end px-0">
+                        <select class="form-select form-select" id="dish-type" aria-label=".form-select-lg example">
+                            <option value=" " selected>No preference</option>
+                            <option value="breakfast">Breakfast</option>
+                            <option value="appetizer">Appetizer</option>
+                            <option value="soup">Soup</option>
+                            <option value="main course">Main course</option>
+                            <option value="side dish">Side dish</option>
+                            <option value="dessert">Dessert</option>
+                            <option value="salad">Salad</option>
+                            <option value="bread">Bread</option>
+                            <option value="sauce">Sauce</option>
+                            <option value="drink">Drink</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row py-3"></div>
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-3 px-0 reveal" id="cuisine-reveal">
+                        <p class="subtitle-light">Select cuisines<i class="fas fa-chevron-right"></i></p>
+                    </div>
+                    <div class="col-7 justify-content-center text-center checkbox-select">
+                        <div class="btn-group-horizontal" role="group" aria-label="Cuisines" id="cuisine">
+
+                            <input type="checkbox" class="btn-check" id="cuicheck1" autocomplete="off">
+                            <label class="btn btn-success btn-sm" for="cuicheck1">African</label>
+
+                            <input type="checkbox" class="btn-check" id="cuicheck2" autocomplete="off">
+                            <label class="btn btn-success btn-sm" for="cuicheck2">Chinese</label>
+
+                            <input type="checkbox" class="btn-check" id="cuicheck4" autocomplete="off">
+                            <label class="btn btn-success btn-sm" for="cuicheck4">Korean</label>
+
+                            <input type="checkbox" class="btn-check" id="cuicheck5" autocomplete="off">
+                            <label class="btn btn-success btn-sm" for="cuicheck5">Vietnamese</label>
+
+                            <input type="checkbox" class="btn-check" id="cuicheck6" autocomplete="off">
+                            <label class="btn btn-success btn-sm" for="cuicheck6">Thai</label>
+
+                            <input type="checkbox" class="btn-check" id="cuicheck7" autocomplete="off">
+                            <label class="btn btn-success btn-sm" for="cuicheck7">Indian</label>
+
+                            <input type="checkbox" class="btn-check" id="cuicheck8" autocomplete="off">
+                            <label class="btn btn-success btn-sm" for="cuicheck8">British</label>
+
+                            <input type="checkbox" class="btn-check" id="cuicheck9" autocomplete="off">
+                            <label class="btn btn-success btn-sm" for="cuicheck9">Irish</label>
+
+                            <input type="checkbox" class="btn-check" id="cuicheck10" autocomplete="off">
+                            <label class="btn btn-success btn-sm" for="cuicheck10">French</label>
+
+                            <input type="checkbox" class="btn-check" id="cuicheck11" autocomplete="off">
+                            <label class="btn btn-success btn-sm" for="cuicheck11">Italian</label>
+
+                            <input type="checkbox" class="btn-check" id="cuicheck12" autocomplete="off">
+                            <label class="btn btn-success btn-sm" for="cuicheck12">Spanish</label>
+
+                            <input type="checkbox" class="btn-check" id="cuicheck13" autocomplete="off">
+                            <label class="btn btn-success btn-sm" for="cuicheck13">Middle Eastern</label>
+
+                            <input type="checkbox" class="btn-check" id="cuicheck14" autocomplete="off">
+                            <label class="btn btn-success btn-sm" for="cuicheck14">Jewish</label>
+
+                            <input type="checkbox" class="btn-check" id="cuicheck15" autocomplete="off">
+                            <label class="btn btn-success btn-sm" for="cuicheck15">American</label>
+
+                            <input type="checkbox" class="btn-check" id="cuicheck16" autocomplete="off">
+                            <label class="btn btn-success btn-sm" for="cuicheck16">German</label>
+
+                            <input type="checkbox" class="btn-check" id="cuicheck17" autocomplete="off">
+                            <label class="btn btn-success btn-sm" for="cuicheck17">Greek</label>
+
+                            <input type="checkbox" class="btn-check" id="cuicheck18" autocomplete="off">
+                            <label class="btn btn-success btn-sm" for="cuicheck18">Eastern European</label>
+
+                            <input type="checkbox" class="btn-check" id="cuicheck19" autocomplete="off">
+                            <label class="btn btn-success btn-sm" for="cuicheck19">Caribbean</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row py-3"></div>
+                <div class="row justify-content-center">
+                    <div class="col-3 px-0 reveal" id="intolerance-reveal">
+                        <p class="subtitle-light">Select intolerances<i class="fas fa-chevron-right"></i></p>
+                    </div>
+                    <div class="col-7 justify-content-center text-center checkbox-select">
+                        <div class="btn-group-horizontal" role="group" aria-label="Intolerances" id="intolerance">
+                            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                            <label class="btn btn-danger btn-sm" for="btncheck1">Dairy</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                            <label class="btn btn-danger btn-sm" for="btncheck2">Egg</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                            <label class="btn btn-danger btn-sm" for="btncheck3">Gluten</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off">
+                            <label class="btn btn-danger btn-sm" for="btncheck4">Peanut</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off">
+                            <label class="btn btn-danger btn-sm" for="btncheck5">Sesame</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off">
+                            <label class="btn btn-danger btn-sm" for="btncheck6">Seafood</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off">
+                            <label class="btn btn-danger btn-sm" for="btncheck7">Shellfish</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck8" autocomplete="off">
+                            <label class="btn btn-danger btn-sm" for="btncheck8">Soy</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck9" autocomplete="off">
+                            <label class="btn btn-danger btn-sm" for="btncheck9">Sulfite</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck10" autocomplete="off">
+                            <label class="btn btn-danger btn-sm" for="btncheck10">Tree Nut</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck11" autocomplete="off">
+                            <label class="btn btn-danger btn-sm" for="btncheck11">Wheat</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row py-3"></div>
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <button type="submit" id="query-search-button" class="btn btn-secondary btn-lg"
+                        onclick="return executeSearch()">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row py-3"></div>
+    <div class="row justify-content-center">
+        <div class="col-10" id="results-area" class="justify-content-center">
+            <div id="query-placeholder">
+            </div>
+        </div>
+    </div>
+    <div class="row py-3"></div>
+    <div class="row col-8 justify-content-center previous-search-container">
+        <div class="col-10">
+            <h2 class="subtitle text-center justify-content-center">Previous recipes you've looked at</h2>
+        </div>
+        <div class="col-10">
+            <ul id="previous-search-area"></ul>
+        </div>
+    </div>
+    <div class="row py-3"></div>
+</main>
+<footer>
+    <div class="row justify-content-center">
+        <div class="col-10" id="contact-form-area">
+            <form id="contact-form" onsubmit="return sendMail()">
+                <div class="form-group">
+                    <div class="form-floating black-text-color">
+                        <input type="text" class="form-control" id="name" placeholder="Enter your name (required)"
+                            name="name" required />
+                        <label for="name">Enter your name (required)</label>
+                    </div>
+                    <div class="row py-1"></div>
+                    <div class="form-floating black-text-color">
+                        <input type="email" class="form-control" id="emailAddress" aria-describedby="detailsHelp"
+                            placeholder="Enter your email (required)" name="emailAddress" required />
+                        <label for="emailAddress">Enter your email (required)</label>
+                    </div>
+                    <div class="row py-1"></div>
+                    <small id="detailsHelp" class="white-text-color">Your details will be stored securely.</small>
+                </div>
+                <div class="row py-3"></div>
+                <select class="form-select" aria-label="Contact query choices" name="queryTopic" id="queryTopic">
+                    <option selected>Select your issue...</option>
+                    <option value="Website issue">Website fails to search</option>
+                    <option value="Recipe issue">Recipe info is incorrect</option>
+                    <option value="Miscellaneous query">Something else!</option>
+                </select>
+                <div class="row py-1"></div>
+                <div class="form-floating black-text-color">
+                    <textarea class="form-control" placeholder="Enter your text below" name="commentArea"
+                        id="commentArea" style="height: 300px" name="Comments"></textarea>
+                    <label for="commentArea">Enter your text below</label>
+                </div>
+                <div class="row py-3"></div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <div class="row py-3"></div>
+            <h2 class="subtitle text-center justify-content-center" id="contact-reveal">Issues? Requests? Click here to contact the developer<br/><i class="fas fa-chevron-down"></i></h2>
+            <div class="row py-3"></div>
+        </div>
+    </div>
+</footer>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+<script src="assets/js/script.js">
+</script>
+<script src="assets/js/sendemail.js"></script>
+
+</html>

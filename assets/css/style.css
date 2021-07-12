@@ -10,7 +10,7 @@ body {
     background-blend-mode: darken;
     background-position: center;
     color: #ffffff;
-};
+}
 
 /* TEXT COLORS AND STYLING */
 .white-text-color {
@@ -19,6 +19,14 @@ body {
 
 .black-text-color {
     color: #000000!important;
+}
+
+#logo-heading {
+    margin: 0 0 10% 0;
+}
+
+#results-header {
+    display: none;
 }
 
 .subtitle {
@@ -54,7 +62,7 @@ body {
 }
 
 #list-recipe {
-    margin: 20px;
+    margin: 20px 0;
 }
 
 #list-recipe > li {
