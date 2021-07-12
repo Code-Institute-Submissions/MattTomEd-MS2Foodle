@@ -29,7 +29,7 @@ The core aims of the website
 
 I have based my website on the simplicity of Google's search engine, while also keeping in mind the need for providing a way for users to input specific criteria.
 
-I used other search tools to find ways to add criteria that a iser will find intuitive, such as dropsdowns, checkboxes and optional extra fields. 
+I used other search tools to find ways to add criteria that a iser will find intuitive, such as dropdowns, checkboxes and optional extra fields. 
 
 # Scope plane
 
@@ -185,6 +185,28 @@ The W3C Markup Validator, W3C CSS Validator and JS Hint services were used to va
     2. As a Returning Visitor, I want to contact the developer to provide feedback or suggestions for further recipe inclusions.
 
         A contact form has been included at the footer of the page that allows a user to leave messages based on recipe inaccuracies, website improvements or recipe suggestions. These messages are sent to my personal email and trigger successfully. The prompt to click to contact the developer is easy to see and reveals the form upon clicking, which helps avoid cluttering the page too much when adhering to my goal of creating a single-page tool.
+
+### User story illustration of testing
+
+**Please click the screenshots below to see how the website looks at each step through the user journey.**
+
+[Starting state of the website.](docs/screenshots/screenshot1.png)
+
+
+[Array of search results, with checkboxes revealed.](docs/screenshots/screenshot2.png)
+
+
+[Recipe summary card with buttons to external website if needed. This opens in a new tab.](docs/screenshots/screenshot3.png)
+
+
+[Return to the previous search. The information is stored in localStorage for future sessions.](docs/screenshots/screenshot4.png)
+
+
+[Contact form for submitting info to the developer.](docs/screenshots/screenshot5.png)
+
+
+[404 page.](docs/screenshots/screenshot6.png)
+
 
 ### Responsiveness
 
