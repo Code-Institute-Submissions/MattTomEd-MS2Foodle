@@ -246,9 +246,9 @@ To deploy a page yourself, do the following:
 1. Access your GitHub account and find the relevant repository. If you do not have a Github account, follow the steps to create one.
 1. Access the repository you would like to fork. Click 'Settings' in the repository.
 1. In Settings, click 'Pages' in the left-hand menu.
-1. Scroll down the Settings page to the "GitHub Pages" section and push the blue "Check it out here!" text.
+1. Scroll down the Settings page to the "GitHub Pages" section and click the option highlighted in orange that takes you to the dedicated tab.
 1. Under 'Source', in the dropdown menu displaying 'None', select 'Master Branch'.
-1. Select 'save' The page will refresh upon completion.
+1. Select 'Save'. The page will refresh upon completion.
 1. At the top of Github Pages you will see a link to your live website.
 
 
