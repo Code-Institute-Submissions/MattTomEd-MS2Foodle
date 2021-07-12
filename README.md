@@ -9,102 +9,107 @@ I have chosen to use an API that allows me to pull information on recipes based 
 The API that is used is the [spoonacular Nutrition, Recipe and Food API.](https://rapidapi.com/spoonacular/api/recipe-food-nutrition/)
 
 ![Responsiveness test](docs/responsiveness/responsive.png)
+
 # User Experience (UX)
 
 # Strategy plane
 
-## Importance and Feasibility Scores
+## Aims of the website
 
-The identified needs of the site have been measured according to their importance and the feasibility of addressing those needs: 
+The identified needs of the site have been measured as below: 
 
-*   Increase social media followers
-*   Create an online presence
-*   Showcase a portfolio
-*   Create a blog for new content and to provide articles on photography
-*   A place for showcasing positive reviews/feedback
+*   Provide users with an easy-to-use recipe search tool
+*   Inform users about other external websites for further recipe research
+*   Allow users with specific needs to find appropriate recipes
+*   Provide users with a way to come back to previous searches if needed
 
-The ranking for these needs is below:
-
-*   Increase social media followers: Importance 5, Feasibility 4
-*   Create an online presence: Importance 3, Feasibility 5
-*   Showcase a portfolio: Importance 5, Feasibility 5
-*   Create a blog for new content and to provide articles on photography: Importance 2, Feasibility 1
-*   A place for showcasing positive reviews/feedback: Importance 3, Feasibility 3
-
-As a result, we chose to focus on increasing followers and showcasing a portfolio before addressing other needs.
+The core aims of the website 
 
 ## Competitor analysis
 
-I have used other local photography websites to establish an idea of what other people are doing, and how they obtain value: 
+I have based my website on the simplicity of Google's search engine, while also keeping in mind the need for providing a way for users to input specific criteria.
 
-*    https://thecardiffphotographer.co.uk/
-*    https://www.jhwedding.photography/
-
-From analysing these websites, we can infer that value will be obtained through image-based development solutions. 
-Ideal users of this site will be: 
-*   People interested in photography, art and natural art
-*   Individuals looking to purchase prints, commissions or event photography assistance
-*   Professionals looking to learn more about Catrin’s portfolio and to find contact details
+I used other search tools to find ways to add criteria that a iser will find intuitive, such as dropsdowns, checkboxes and optional extra fields. 
 
 # Scope plane
 
-*   A carousel of images on the home page
-*   Fancybox implementation for site visitors to inspect individual images
-*   A logo that supports the website with appropriate branding
-*   Parallax effects to separate content, if there is scope
-*   Animated/video site backgrounds to increase appeal of the site, if there is scope
-*   3D assets using JavaScript libraries such as https://threejs.org/ as an alternative way to showcase images, if there is scope
-
-The first three points will be focused on, with further time being afforded to animation effects either in this build or future development sessions, should these criteria not meet the MVP.
+*   A single-page website that updates based on the user's need
+*   Summary fields that open up when a user wishes to inspect a recipe
+*   Design philosophy that is not elaborate and easy to read
+*   Use of localStorage and sessionStorage to help with data retention for future visits
+*   Lodash usage to provide additional support with array modification
 
 # Structure plane
 
-There is no need for the website to deviate from a linear structure of pages, as this will confuse customers less familiar with non-traditional web design. The website will follow interaction design objectives as outlined below:
+This website has 1 page, plus a 404 error page if an invalid link is entered. The website will use Bootstrap, Fontawesome, EmailJS, jQuery and Lodash to enhance the website. I wanted to keep the structure clear and simple. Buttons are clearly visible and provide feedback, and the user is always able to conduct another search from the screen if needed.
 
-*   Consistency – Pages must look, feel and interact in a consistent way. This applies to link :hover and :active behaviours as well as moving parts of the website, such as the carousel
+Summaries and searches can be reset to return the user to the initial website state.
 
-*   Predictability – The website must respond in a predictable manner - particularly important for when users click on images as part of the Portfolio section
+The footer provides an easy way for users to contact the developer by clicking a field at the bottom of the page.
 
-*   Learnability – Features must be intuitive and feature single-click learning to prevent visitors becoming frustrating and clicking away, particularly important for capturing user data on the Contact section
+*   Consistency – Pages must look, feel and interact in a consistent way. This applies to link :hover and :active behaviours as well as selecting fields in a table
+
+*   Predictability – The website must respond in a predictable manner - particularly important when users wish to select a recipe for further inspection
+
+*   Learnability – Features must be intuitive and feature single-click learning to prevent visitors becoming frustrating and clicking away
 
 *   Visibility – Features must be visible, with content hinting included as appropriate
 
-*   Feedback – Input fields and clickable events should respond in a way that assures the user that an event is progressing. This includes a broken link page, but this will be outside the scope of this project. Feedback will be provided on the Contact form if incorrect data is entered, or if a required field is missing.
+*   Feedback – Input fields and clickable events should respond in a way that assures the user that an event is progressing. Error message will appear if an API call does not succeed, and will appear if a contact form submission is successful or has otherwise failed. 
+
+**1.  Home - index.html**
+
+    Most of the website's structure is based here. The only time a user will navigate away from this page is if they have attempted to navigate away manually.
+
+    The user will search, browse and research recipes from this page.
+
+**2.  404 - 404.html**
+
+    This page is shown when users enter an invalid link, and contains a link to get back to the intended start point or a contact field to get in touch.
 
 # Skeleton plane
 
 ## Wireframes
 
--   Home Page Wireframe - [View](wireframes/wireframehome.png)
+-   Starting state - [View](docs/wireframes/wireframe1.png)
 
--   Portfolio Wireframe - [View](wireframes/wireframeportfolio.png)
+-   Table of data received from API - [View](docs/wireframes/wireframe2.png)
 
--   Contact Wireframe - [View](wireframes/wireframecontact.png)
+-   Recipe summary - [View](docs/wireframes/wireframe3.png)
 
--   About Wireframe - [View](wireframes/wireframeabout.png)
+##  Code structure
+
+-   The document will execute code upon startup and implement event listeners for when buttons are clicked to reveal other code elements, such as checkboxes.
+-   The function checkPreviousSearchList(keyNumber) will call previous searches from past browsing sessions ready for the user. The function callPreviousSearchResult(id) will then print the selected choice.
+-   Upon submitting a search, the function compileUrl() will create a URL to submit to the API using data gathered from the form presented upon the page's initialisation.
+-   executeSearch(cb) displays the search result, using a callback to generate the URL needed. displayData() is called to generate a table list of results. Lodash has been used to easily split the array into 10 separate chunks, and pagination generates using createPagination(maxPages) to cycle through results (unless maxPages is only === 1).
+-   generateSummary(response) handles the printing of the recipe summary card through using getRecipeInfo(response). Depending on the information received, it prints and organises information from the API. Icons auto-generate if values for vegetarian, vegan, dairy-free or gluten-free are truthy.
+-   As the time values are given as integers, convertTime(time) converts time to hours and minutes.
+-   removeSearchData() allows users to 'step back', while resetSearch() resets the page to its starting state.
+-   nextPage(maxPages) and prevPage() call on the pageNumber stored in sessionstorage to cycle through the active recipeArray generated in executeSearch(cb), also stored to sessionStorage. 
     
 # Surface plane
 
 ## Colour Scheme
-A natural style has been chosen for this website, using a mix of light and dark green. Gradients are used in the background.
+White text will be laid on top of black windows and a dark background to ensure the contact is maintained.
 
 ## Typography
-Source Serif Pro is used for titles to evoke a sense of style and elegance. Open Sans was chosen as a complementary paragraph font.
+Google's Poppins font is used for most text. sans serif is used if these fonts are unable to be retrieved.
 
 ## Imagery
-A carousel has been used to bring Catrin's photos front and centre upon first visiting. This comes at the potential cost of an increased initial load for first-time visitors to the website, but this has been mitigated as much as possible without sacrificing image quality.
+A background image of a meal is used to add style to the page. The API retrieves a recipe image when a user chooses to look at a recipe summary.
 
 # User stories
 
 ## First Time Visitor Goals
 
-1. As a First Time Visitor, I want to easily understand the main purpose of the site and learn more about the photographer.
-2. As a First Time Visitor, I want to be able to easily navigate throughout the site to find examples of Catrin's photography.
+1. As a First Time Visitor, I want to search for recipes that I can use according to my specific needs or preferences.
+2. As a First Time Visitor, I want to be able to easily find the steps needed to recreate a specific recipe, and find out where the recipe originates from.
 
 ## Returning Visitor Goals
 
-1. As a Returning Visitor, I want to be able to find a way to contact Catrin for the purposes of engaging with her services.
-2. As a Returning Visitor, I want to find a way to engage with Catrin through social media.
+1. As a Returning Visitor, I want to be able to return to a previous search and continue using the website.
+2. As a Returning Visitor, I want to contact the developer to provide feedback or suggestions for further recipe inclusions.
 
 ## Features
 
@@ -122,85 +127,134 @@ A carousel has been used to bring Catrin's photos front and centre upon first vi
 
 -   [HTML5](https://en.wikipedia.org/wiki/HTML5)
 -   [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
+-   [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
 
 ### Frameworks, Libraries & Programs Used
 
 1. [Bootstrap 5:](https://getbootstrap.com/)
     - Bootstrap was used to assist with the responsiveness and styling of the website.
 1. [Google Fonts:](https://fonts.google.com/)
-    - Google Fonts have been used: Source Serif Pro and Open Sans.
+    - Google Fonts have been used: Poppins.
 1. [Font Awesome:](https://fontawesome.com/)
     - Font Awesome has been used for icons used in parts of the site.
 1. [jQuery:](https://jquery.com/)
-    - jQuery was required to enable Bootstrap and Fancybox features.
+    - jQuery has been used for website responsiveness.
 1. [Git](https://git-scm.com/)
     - Git has been used as a version control system, which enables viewers to see the deployment history and design process. Github has been used as a storage for this info.
 1. [GIMP:](https://www.gimp.org/)
     - GIMP was used to resize images, export to .jpg and .png and recolour some images.
 1. [Balsamiq:](https://balsamiq.com/)
     - Balsamiq has been used for the wireframes attached to this project.
-1. [Fancybox:](https://fancyapps.com/fancybox/3/)
-    - Fancybox has been implemented to allow users to click on photos, gain a better view of images and to browse through the portfolio in an easy to use gallery function.
+1. [Lodash:](https://lodash.com/)
+    - Lodash was implemented to assist with array manipulation when handling API objects.
+1. [EmailJS:](https://www.emailjs.com/)
+    - EmailJS has been used to provide functionality to the website's contact form.
 
 ## Testing
 
-The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project.
+The W3C Markup Validator, W3C CSS Validator and JS Hint services were used to validate every page of the project to ensure there were no syntax errors in the project.
 
--   [W3C Markup Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - All pages pass with no errors.
--   [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - CSS file passes with no errors.
+-   [W3C Markup Validator](https://jigsaw.w3.org/css-validator/) - All pages pass with no errors.
+-   [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) - CSS file passes with no errors.
+-   [JS Hint](https://jshint.com/) - JS file passes with no errors Some variables are used by HTML onclick attributes which are not recognised in this check.
+
+
 
 ### Testing User Stories from User Experience (UX) Section
 
 -   #### First Time Visitor Goals
 
-    1. As a First Time Visitor, I want to easily understand the main purpose of the site and learn more about the photographer.
+    1. As a First Time Visitor, I want to search for recipes that I can use according to my specific needs or preferences.
 
-        Upon entering the site, users are able to access a clean and contrasted navigation bar to select the Portfolio, About or Contact sections easily. They are also immediately draen to the carousel, that rotates through three photos, each with a differing CTA that link to the other pages on the site. Content hinting has been implemented to encourage readers to scroll down.
+        The user's first engagement with the website is the logo, the logo header and the search fields that prompt the user for specific information. The user is immedately drawn to the tools needed to search for recipes that they require. Content hinting has been implemented to encourage readers to scroll down.
+
+        Each summary card contains easy to read information using coloured icons at the top of the card. These icons act as 'tags' for the recipe. For example, if a recipe is tagged as a vegetarian recipe by the API, the icon will show. This will inform the user at a glance that the recipe is suitable for vegetarians.
 
 
-    2. As a First Time Visitor, I want to be able to easily navigate throughout the site to find examples of Catrin's photography.
+    2. As a First Time Visitor, I want to be able to easily find the steps needed to recreate a specific recipe, and find out where the recipe originates from.
 
-        The website has been designed to be linear and should be familiar with the majority of internet users. The website clearly labels the destination of any links that can be clicked, and external links open in a new tab as per standard practice. The portfolio section contains images that are clickable and navigate to an easy to use gallery, which is also responsive to mobile devices. The background fades to black to ensure visual noise does not distract from the browsing experience.
+        The website provides a table of results, each with a clickable button that redirects the user to a specific summary card that contains recipe information pulled from the API. The summary contains recipe steps, ingredients and an image, along with a credit to the recipe origin website and a button to direct to the original recipe page should they need more information.
 
 
 -   #### Returning Visitor Goals
 
-    1. As a Returning Visitor, I want to be able to find a way to contact Catrin for the purposes of engaging with her services.
+    1. As a Returning Visitor, I want to be able to return to a previous search and continue using the website.
 
-        There are clear CTAs and links to the contact page, whereupon users are taken through a simple-to-use form that clearly labels what information is required and what information to input in each data box. The form currently links to the CI info dump page, but in future builds will link to relevant databases for processing. 
+        Searches are stored in localStorage and are contained in a field when a user returns to the website. Up to 5 previous searches are displayed at a time, ordered from most recent downwards. Each previous search is clickable and redirects the user once again to the summary card, without expending an additional API call. Should the user then wish to return to searching, the summary card can be closed without opening up a table array.
 
-    2. As a Returning Visitor, I want to find a way to engage with Catrin through social media.
+    2. As a Returning Visitor, I want to contact the developer to provide feedback or suggestions for further recipe inclusions.
 
-        Social media links are included in the footer on all pages as per standard practice, and are also included in the About page where people are most likely to visit to learn more about Catrin's work. Depending on Catrin's frequency when posting, this indirectly addresses the need for a blog, but as social media accounts operate independently of the site, this frees up resources that can be used to achieve other aims. Currently, the links navigate to the general homepages of the social media links in question. 
+        A contact form has been included at the footer of the page that allows a user to leave messages based on recipe inaccuracies, website improvements or recipe suggestions. These messages are sent to my personal email and trigger successfully. The prompt to click to contact the developer is easy to see and reveals the form upon clicking, which helps avoid cluttering the page too much when adhering to my goal of creating a single-page tool.
 
 ### Responsiveness
 
--   The home page consists of a carousel that removes descriptive text in favour of just a title and a CTA whe viewed on mobile. This ensures there is enough space for the photo to still be visible. Columns stack on top of one another when viewed on mobile devices and smaller tablets. 
--   The portfolio contains a 3 by 4 grid of photos, which shrinks to a 2 by 6 or 1 by 12 grid depending on screen size.
--   The About page stacks columns on top of one another on smaller screens. The header text's size remains consistently large over the image displayed.
--   The Contact page stacks columns on top of one another, while also respecting the size of the form on the page.
--   The header arranged links into a clickable menu that hides links when disabled. This ensures there is more screen space that can be used.
--   The footer stacks content vertically to ensure social media links are still clickable.
+-   The website has been designed with a mobile-first approach, so all fields should be responsive and should provide ease of use on mobile or tablet devices. Images in the summary cards reposition above the ingredient list to allow for text to remain legible.
+-   The website operates using Bootstrap's grid system to ensure columns behave appropriately and that sufficient space is used.
+-   Fonts scale down depending on the size of the screen used, using @media queries.
+-   Search results on smaller screens omit the Preparation Time result to ensure results are still legible. This field can still be checked on the summary card.
 
 ### Further Testing
 
 -   The website's pages achieve 90+ scores for Performance, Accessibility, Best Practices and SEO on Google Chrome's Lightbox testing feature.
 -   The website has been tested using Chrome Developer Tools to ensure any interactions operate correctly (through manually enabling selectors such as :hover or :active)
 -   The website was viewed on desktop and mobile devices.
--   Catrin viewed the site and suggested changes and alterations.
+-   The website has been tested by other people and feedback has been gathered and acted on.
 
-### Known Bugs
+### Further features
 
--   Images can sometimes cause the Lightbox score to dip below 90 - a balance has been sought to achieve quick loading times without sacrificing image quality, but this could do with further tweaking or redesign in future updates.
+-   Future releases can include the ability for users to save recipes that they like to a separate localStorage array. Future releases can also provide functionality for users to email a recipe to someone (or themselves) for future use.
 
 ## Credits
 
 ### Code
 
 -   [Bootstrap5](https://getbootstrap.com/): The Bootstrap library has been used for its ease in implementing mobile-first design. My custom CSS builds on this to create a website that feels more unique.
-
 -   [Fancybox](https://fancyapps.com/fancybox/3/): The Fancybox Javascript lightbox library was recommended as an easy way to enable users to preview images in a way that does not impact performance, while maintaining responsiveness. 
+-   [EmailJS:](https://www.emailjs.com/): EmailJS has been used to provide functionality to the website's contact form I have used Bootstrap's form design to provide prompts for the user to enter required fields.
+-   [Lodash:](https://lodash.com/): Lodash was recommended as a way to make array manipulation easier. This has been used as a way to easily split the results of an array call into separate arrays, which is used as a way for users to cycle through several sets of tabled data.
+-   [jQuery:](https://jquery.com/): jQuery has been used for website responsiveness. I opted to use jQuery to make the task of adding and removing HTML elements based on logical arguments an easier task.
 
+## Deployment
+### GitHub Pages
+
+This website has been deployed using GitHub Pages.
+
+To deploy a page yourself, do the following:
+
+1. Access your GitHub account and find the relevant repository. If you do not have a Github account, follow the steps to create one.
+1. Access the repository you would like to fork. Click 'Settings' in the repository.
+1. In Settings, click 'Pages' in the left-hand menu.
+1. Scroll down the Settings page to the "GitHub Pages" section and push the blue "Check it out here!" text.
+1. Under 'Source', in the dropdown menu displaying 'None', select 'Master Branch'.
+1. Select 'save' The page will refresh upon completion.
+1. At the top of Github Pages you will see a link to your live website.
+
+
+### Forking the GitHub Repository
+To make a clone, or 'fork' this repository, follow the steps below.
+
+1.  Access your GitHub account and find the relevant repository. If you do not have a Github account, follow the steps to create one.
+1.  Access the repository you would like to fork. Click on 'Fork' on the top right of the page.
+1.  You will find a copy of the repository in your own Github account.
+
+### Making a Local Clone
+How to run this project locally:
+
+1.  Install the GitPod Browser Extension for Chrome.
+1.  After installation, restart the browser.
+1.  Access your GitHub account and find the relevant repository. If you do not have a Github account, follow the steps to create one.
+1.  Click the green "GitPod" button in the top right corner of the repository. 
+
+### How to run this project within a local IDE, such as VSCode:
+
+1.  Access your GitHub account and find the relevant repository. If you do not have a Github account, follow the steps to create one.
+1.  Under the repository name, click 'Clone'.
+1.  Copy the clone URL for the repository You can click the clipboard icon to do this, or copy directly.
+1.  Using an IDE, open a new terminal window.
+1.  Navigate to the directory location where you want the cloned directory to be made.
+1.  Type 'git clone', and then paste the URL you copied in Step 3, as shown in the next step:
+1. `git clone https://github.com/USERNAME/REPOSITORY  `
+1.  Press Enter. Your local clone will be created.
 
 ### Content
 
@@ -209,7 +263,7 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
 ### Media
 
--   All images were created by Catrin.
+-   Images are sourced from the spoonacular API. The background image was taken by myself. All recipes are gained from the API, which in turn has pulled the data from its own list of sources. All sources are currectly attributed on the website summary card, and users can direct to the website through a clickable button.
 
 ### Acknowledgements
 
@@ -217,6 +271,6 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
 -   Code Institute for the Slack channel and tutor support when encouring technical issues or sudden Gitpod updates.
 
--   Catrin for the images.
+-   spoonacular for the API tool that this website has been based on.
 
--   The owners of the two example websites I browsed for ideas on how to create an appropriate website, JH Weddings and The Cardiff Photographer.
+-   Slack Exchange for helpful tips on specific questions I had during the creation of this project.
