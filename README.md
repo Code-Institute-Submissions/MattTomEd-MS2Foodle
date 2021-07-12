@@ -51,9 +51,7 @@ The footer provides an easy way for users to contact the developer by clicking a
 
 *   Predictability – The website must respond in a predictable manner - particularly important when users wish to select a recipe for further inspection
 
-*   Learnability – 
-
-must be intuitive and feature single-click learning to prevent visitors becoming frustrating and clicking away
+*   Learnability – The site's features must be intuitive and feature single-click learning to prevent visitors becoming frustrating and clicking away
 
 *   Visibility – Features must be visible, with content hinting included as appropriate
 
@@ -93,10 +91,10 @@ must be intuitive and feature single-click learning to prevent visitors becoming
 # Surface plane
 
 ## Colour Scheme
-White text will be laid on top of black windows and a dark background to ensure the contact is maintained.
+White text will be laid on top of black windows and a dark background to ensure the contrast is maintained.
 
 ## Typography
-Google's Poppins font is used for most text. sans serif is used if these fonts are unable to be retrieved.
+Google's Poppins font is used for most text. Sans serif is used if these fonts are unable to be retrieved.
 
 ## Imagery
 A background image of a meal is used to add style to the page. The API retrieves a recipe image when a user chooses to look at a recipe summary.
