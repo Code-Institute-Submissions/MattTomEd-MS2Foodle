@@ -33,6 +33,10 @@ body {
     font-size: 4rem;
 }
 
+#unknown-text a {
+    font-size: 4rem;
+}
+
 .subtitle {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
